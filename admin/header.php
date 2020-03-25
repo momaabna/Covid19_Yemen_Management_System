@@ -40,7 +40,16 @@
       <li id="cases_list" class="nav-item ">
         <a class="nav-link" href="cases_list.php"><img src='../images/users.png' width='32px' height='32px' />Cases List <span class="sr-only"></span></a>
       </li>
-	  
+      <?php
+	  if($login_permission==0){
+    ?>
+<li id="users" class="nav-item ">
+        <a class="nav-link" href="users.php"><img src='../images/lock.png' width='32px' height='32px' />Users <span class="sr-only"></span></a>
+      </li>
+
+    <?php
+};
+?>
 	  </ul>
 	  <form class="form-inline my-2 my-lg-0" action="./logout.php">
       
