@@ -31,7 +31,7 @@
         <a class="nav-link" href="index.php"><img src='images/home.png' width='32px' height='32px' />Home <span class="sr-only">(current)</span></a>
       </li>
       <li id="login" class="nav-item ">
-        <a class="nav-link" href="admin/login.php"><img src='images/login.png' width='32px' height='32px' /> Login</a>
+        <a class="nav-link" href="admin/index.php"><img src='images/login.png' width='32px' height='32px' /> Login</a>
       </li>
  
   </div>

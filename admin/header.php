@@ -32,10 +32,13 @@
         <a class="nav-link" href="index.php"><img src='../images/home.png' width='32px' height='32px' />Main <span class="sr-only">(current)</span></a>
       </li>
 	  <li id="new_hc" class="nav-item ">
-        <a class="nav-link" href="new_hc.php"><img src='../images/add.png' width='32px' height='32px' />Add HC <span class="sr-only"></span></a>
+        <a class="nav-link" href="new_hc.php"><img src='../images/add.png' width='32px' height='32px' />Add Quarantine <span class="sr-only"></span></a>
       </li>
       <li id="new_case" class="nav-item ">
         <a class="nav-link" href="new_case.php"><img src='../images/case.png' width='32px' height='32px' />Add Case <span class="sr-only"></span></a>
+      </li>
+      <li id="cases_list" class="nav-item ">
+        <a class="nav-link" href="cases_list.php"><img src='../images/users.png' width='32px' height='32px' />Cases List <span class="sr-only"></span></a>
       </li>
 	  
 	  </ul>

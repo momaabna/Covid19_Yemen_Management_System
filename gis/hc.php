@@ -9,7 +9,7 @@ $geojson = array(
  
 mysqli_query($db,"set names utf8");
 
-$q = "SELECT * FROM `cases` ";
+$q = "SELECT * FROM `hc` ";
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)) {
     $id =$row['id'];
@@ -23,13 +23,12 @@ while($row = mysqli_fetch_assoc($result)) {
             'id' => $row['id'],
 			'name' => $row['name'],
           'info' => $row['info'],
-		  'type' => $row['type'],
-		  'weight'=>($row['state']+1),
 		  
 		  
 		  
-		  'hc'=>$row['hc_name'],
-		  'datetime'=>$row['datetime'],
+		  
+		  'power'=>$row['power'],
+		  'adress'=>$row['adress'],
 		  'state'=>$row['state']
 		  
           

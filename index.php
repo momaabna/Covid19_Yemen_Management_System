@@ -90,7 +90,7 @@ Click on Case to Get Information
           });
 		  var stage =new ol.style.Icon({
             anchor: [0.5, 1],
-            src: 'images/stage.png'
+            src: 'images/hospital.png'
           });
     var marker2 = new ol.style.Icon({
             anchor: [0.5, 1],
@@ -99,7 +99,7 @@ Click on Case to Get Information
   var style = new ol.style.Style({
         image: new ol.style.Icon({
             anchor: [0.5, 1],
-            src: 'images/marker.png'
+            src: 'images/hospital.png'
           }),
       text: new ol.style.Text({
           font: '12px Calibri,sans-serif',
@@ -142,9 +142,9 @@ Click on Case to Get Information
 
 	  var vectorLayer2 = new ol.layer.Vector({
         source: new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/stages.php',
+          url: '<?php echo $sitelink ; ?>gis/hc.php',
           format: new ol.format.GeoJSON()
-        }),name:'stages',
+        }),name:'hospitals',
         style: function(feature, resolution) {
           style.getText().setText(resolution < 50 ? feature.get('current')  : '');
             
@@ -171,7 +171,7 @@ Click on Case to Get Information
           new ol.layer.Tile({
             source: new ol.source.OSM()
           }),
-          vector,vectorLayer
+          vector,vectorLayer,vectorLayer2
           ],
           overlays: [overlay],
         target: 'map',
@@ -197,25 +197,47 @@ Click on Case to Get Information
     
         var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
             coordinate, 'EPSG:3857', 'EPSG:4326'));
-			//if(layer.H.name=='stages'){
+
+			if(layer.H.name=='hospitals'){
 			//	content.innerHTML='<p>Current Program: '+feature.get('current')+'</p>';
-				var table = '<a href="#" class="list-group-item list-group-item-action active"> Case Information</a>';
-				//var el=feature.get('schedul').split(',');
-				//for(var i=0;i<el.length;i++){
-					table+='<a href="#" class="list-group-item list-group-item-action"> Case Name : '+feature.get('name')+'</a>';
-					table+='<a href="#" class="list-group-item list-group-item-action"> Type : '+feature.get('type')+'</a>';
-					table+='<a href="#" class="list-group-item list-group-item-action"> Information : '+feature.get('info')+'</a>';
+				
 					
 				//}
-				document.getElementById('table').innerHTML=table;
-			//}else{
+
+        var table = '<a href="#" class="list-group-item list-group-item-action active"> Qurantine Information</a>';
+        //var el=feature.get('schedul').split(',');
+        //for(var i=0;i<el.length;i++){
+          
+          table+='<a href="#" class="list-group-item list-group-item-action"> Qurantine Name : '+feature.get('name')+'</a>';
+          table+='<a href="#" class="list-group-item list-group-item-action"> Qurantine Information : '+feature.get('info')+'</a>';
+          table+='<a href="#" class="list-group-item list-group-item-action"> Qurantine Power : '+feature.get('power')+' Cases</a>';
+          document.getElementById('table').innerHTML=table;
+        
+      
+
+        content.innerHTML = '<center><h6>'+
+    ' Qurantine Name :</h6><p> '+feature.get('name')+'</p><h6>'+
+    ' Qurantine Information :</h6><p> '+feature.get('info')+'</p><h6><p>Qurantine Power </p></h6><p> '+ feature.get('power')+'</p>'+ '</center>';
+        overlay.setPosition(coordinate);
+				
+			}else{
+
+
+        var table = '<a href="#" class="list-group-item list-group-item-action active"> Case Information</a>';
+        //var el=feature.get('schedul').split(',');
+        //for(var i=0;i<el.length;i++){
+          
+          table+='<a href="#" class="list-group-item list-group-item-action"> Type : '+feature.get('type')+'</a>';
+          table+='<a href="#" class="list-group-item list-group-item-action"> Information : '+feature.get('info')+'</a>';
+          document.getElementById('table').innerHTML=table;
 				
 			
 
-        content.innerHTML = '<center><p>Case Name : ' + feature.get('name')+'</p>'+
-		'<p> Case Information : '+feature.get('info')+'</p><h5><p>Case Type </p></h5><p> '+ feature.get('type')+'</p>'+ '</center>';
-				//}
-        overlay.setPosition(coordinate);
+        content.innerHTML = '<center><h6>'+
+		' Case Information :</h6><p> '+feature.get('info')+'</p><h6><p>Case Type </p></h6><p> '+ feature.get('type')+'</p>'+ '</center>';
+				overlay.setPosition(coordinate);
+        }
+        
      });
 
  });
@@ -227,13 +249,16 @@ function myTimer() {
           format: new ol.format.GeoJSON()
         }));
 		vectorLayer2.setSource(new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/stages.php',
+          url: '<?php echo $sitelink ; ?>gis/hc.php',
           format: new ol.format.GeoJSON()
         }));
   
     
 } 
-	  
+	   map.on('moveend', function(e) {
+      vector.setRadius(5*map.getView().getZoom());
+    vector.setBlur(5*map.getView().getZoom());
+    });
 	  </script>
   
   

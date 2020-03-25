@@ -5,24 +5,26 @@ include('./header.php');
 //include('./includes/setting.php');
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-	$name = htmlspecialchars(mysqli_real_escape_string($db,$_POST['name']));
+	$house_damage = htmlspecialchars(mysqli_real_escape_string($db,$_POST['house_damage']));
       $info = htmlspecialchars(mysqli_real_escape_string($db,$_POST['info'])); 
       $lon = htmlspecialchars(mysqli_real_escape_string($db,$_POST['lon'])); 
 	  $lat = htmlspecialchars(mysqli_real_escape_string($db,$_POST['lat']));
-    $adress = htmlspecialchars(mysqli_real_escape_string($db,$_POST['adress']));
-	  $power=htmlspecialchars(mysqli_real_escape_string($db,$_POST['power']));
-    $phone = htmlspecialchars(mysqli_real_escape_string($db,$_POST['phone']));
-	  $phone2 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['phone2']));
-	  $state=0;
-	  
-    
+	  $sanitation_damage=htmlspecialchars(mysqli_real_escape_string($db,$_POST['sanitation_damage']));
+      $mosquito = htmlspecialchars(mysqli_real_escape_string($db,$_POST['mosquito']));
+	  $scorpions =htmlspecialchars(mysqli_real_escape_string($db,$_POST['scorpions']));
+	  $flies=htmlspecialchars(mysqli_real_escape_string($db,$_POST['flies']));
+	  $diarrhea=htmlspecialchars(mysqli_real_escape_string($db,$_POST['diarrhea']));
+	  $health_center=htmlspecialchars(mysqli_real_escape_string($db,$_POST['health_center']));
+	  $water_source = htmlspecialchars(mysqli_real_escape_string($db,$_POST['water_source']));
+	  $needs =  htmlspecialchars(mysqli_real_escape_string($db,$_POST['needs']));
+    $u_user=1;
 
-if(isset($name) and isset($lon) and isset($info) and isset($lat) and isset($power) and isset($phone) and isset($phone2) and  isset($state) and isset($adress)){
-  
+if($house_damage and $lon and $info and $lat and $sanitation_damage and $mosquito and $scorpions and $flies and $diarrhea and $health_center){
 mysqli_query($db,"SET NAMES 'utf8'");
 				mysqli_query($db,'SET CHARACTER SET utf8'); 
 				//$sql = "INSERT INTO `tasks` (`location`, `f_userid`, `userid`, `title`, `info`, `datetime`, `state`) VALUES (GeomFromText('POINT($lon $lat)'), $f_user , $u_user, '$title', '$info', now(),  0)" ;
-				$sql="INSERT INTO `hc` ( `name`, `info`, `power`, `phone`, `phone2`, `lon`, `lat`, `adress`, `state`) VALUES ( '$name', '$info', $power, '$phone', '$phone2', $lon, $lat, '$adress', 0)";
+				$sql="INSERT INTO `notifications`(`date`, `name`, `phone`, `damage_type`, `house_damage`, `sanitation_damage`, `mosquito`, `flies`, `diarrhea`, `scorpions`, `water_source`, `health_center`, `needs`, `state`, `lon`, `lat`) VALUES
+				(now(),'$user_profile_f_name','$user_profile_f_phone','$info','$house_damage','$sanitation_damage','$mosquito','$flies','$diarrhea','$scorpions','$water_source','$health_center','$needs','0',$lon,$lat)";
    
    $res= mysqli_query($db,$sql); 
     if($res){
@@ -116,37 +118,70 @@ mysqli_query($db,"SET NAMES 'utf8'");
         <div  style="overflow-x:auto;height:450px;" id="form">
             <form method="post" enctype="multipart/form-data" accept-charset="utf-8">
   <div class="form-group col-md-12" >
-    <label for="exampleFormControlInput1">Quarantine Name</label>
-    <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Quarantine Name">
+    <label for="exampleFormControlInput1">Houses Damage</label>
+    <input type="text" class="form-control" name="house_damage" id="exampleFormControlInput1" placeholder="Houses Damage">
   </div>
   
   <div class="form-group col-md-12" >
-    <label for="exampleFormControlInput1">Quarantine Adress</label>
-    <input type="text" class="form-control" name="adress" id="exampleFormControlInput1" placeholder="Quarantine Adress">
-  </div>
-  <div class="form-group col-md-12" >
-    <label for="exampleFormControlInput1">Quarantine Power</label>
-    <input type="text" class="form-control" name="power" id="exampleFormControlInput1" placeholder="Quarantine Power">
-  </div>
- 
-
-<div class="form-group col-md-12">
-    <label for="exampleFormControlTextarea1">Quarantine Information</label>
-    <textarea class="form-control" name="info" id="exampleFormControlTextarea1"  rows="3"></textarea>
+    <label for="exampleFormControlInput1">Sanitation Damage</label>
+    <input type="text" class="form-control" name="sanitation_damage" id="exampleFormControlInput1" placeholder="Sanitation Damage">
   </div>
   <div class="col-md-12" >
-  <div class=" row" >
-  <div class="form-group col-md-6">
-    <label for="needs">Phone</label>
-    <input class="form-control" name="phone" id="needs"  ></textarea>
+   <div class=" row" >
+   <div class="form-group col-md-3" >
+    <label for="mosquito">Mosquito</label>
+    <select class="form-control" name="mosquito" id="mosquito">
+	<option value='Yes'  selected>YES</option>
+	<option value='No'  >No</option>
+	</select>
   </div>
-  <div class="form-group col-md-6">
-    <label for="needs">Another Phone </label>
-    <input class="form-control" name="phone2" id="needs"  ></textarea>
+  <div class="form-group col-md-3" >
+    <label for="flies">Flies</label>
+    <select class="form-control" name="flies" id="flies">
+	<option value='Yes'  selected>YES</option>
+	<option value='No'  >No</option>
+	</select>
   </div>
-</div>
-</div>
+   <div class="form-group col-md-3" >
+    <label for="scorpions">Scorpions</label>
+    <select class="form-control" name="scorpions" id="scorpions">
+	<option value='Yes'  selected>YES</option>
+	<option value='No'  >No</option>
+	</select>
+  </div>
+  <div class="form-group col-md-3" >
+    <label for="diarrhea">Diarrhea</label>
+    <select class="form-control" name="diarrhea" id="diarrhea">
+	<option value='Yes'  selected>YES</option>
+	<option value='No'  >No</option>
+	</select>
+  </div>
+  <div class="form-group col-md-6" >
+    <label for="water_source">Water Source</label>
+    <select class="form-control" name="water_source" id="water_source">
+	<option value='Yes'  selected>YES</option>
+	<option value='No'  >No</option>
+	</select>
+  </div>
+  <div class="form-group col-md-6" >
+    <label for="health_center">Health Center</label>
+    <select class="form-control" name="health_center" id="health_center">
+	<option value='Yes'  selected>YES</option>
+	<option value='No'  >No</option>
+	</select>
+  </div>
+  </div>
+  </div>
 
+<div class="form-group col-md-12">
+    <label for="exampleFormControlTextarea1">Damage Information</label>
+    <textarea class="form-control" name="info" id="exampleFormControlTextarea1"  rows="3"></textarea>
+  </div>
+  <div class="form-group col-md-12">
+    <label for="needs">Needs</label>
+    <textarea class="form-control" name="needs" id="needs"  rows="3"></textarea>
+  </div>
+  
   
     <div class="col-md-12" >
    <div class=" row" >
@@ -179,7 +214,7 @@ mysqli_query($db,"SET NAMES 'utf8'");
                 
                 ?>
 <div class="col-md-12" >
-  <button type="submit" class="btn btn-primary col-md-12">Save Case</button>
+  <button type="submit" class="btn btn-primary col-md-12">Send Notification</button>
                 </div>
 </form>
             
@@ -253,40 +288,23 @@ var container = document.getElementById('popup');
           duration: 250
         }
       }));
-  var stage =new ol.style.Icon({
-            anchor: [0.5, 1],
-            src: '../images/hospital.png'
-          });
-    
-  var style = new ol.style.Style({
-        image: new ol.style.Icon({
-            anchor: [0.5, 1],
-            src: '../images/marker.png'
-          }),
-      text: new ol.style.Text({
-          font: '12px Calibri,sans-serif',
-          fill: new ol.style.Fill({
-            color: '#000'
-          }),
-          stroke: new ol.style.Stroke({
-            color: '#fff',
-            width: 3
-          })
-        })
-      });
 
  var vectorLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/hc.php',
+          url: '<?php echo $sitelink ; ?>gis/pos.php',
           format: new ol.format.GeoJSON()
-        }),name:'hospitals',
+        }),
         style: function(feature, resolution) {
-          style.getText().setText(resolution < 50 ? feature.get('current')  : '');
-            
-                style.setImage(stage);
-            
+          style.getText().setText(resolution < 1 ? feature.get('damage_type')  : '');
+            if(feature.get('state')==1){
+                style.setImage(marker1);
+            }else{
+                style.setImage(marker2);
+            }
           return style;
         }
+              
+       
       });
 
       var map = new ol.Map({
@@ -321,7 +339,7 @@ var container = document.getElementById('popup');
 
 function myTimer() {
     vectorLayer.setSource(new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/hc.php',
+          url: '<?php echo $sitelink ; ?>gis/pos.php',
           format: new ol.format.GeoJSON()
         }));
    
@@ -347,8 +365,8 @@ closer.onclick = function() {
             coord, 'EPSG:3857', 'EPSG:4326');
          document.getElementById('lon').value = proj[0];
           document.getElementById('lat').value = proj[1];
-          content.innerHTML = '<center><p>Case Name : ' + feature.get('name')+'</p>'+
-		'<p> Case information : '+feature.get('info')+'</p><h5><p>Case Type </p></h5><p> '+ feature.get('type')+'</p><h5></center>';
+          content.innerHTML = '<center><p>House Damage : ' + feature.get('house_damage')+'</p>'+
+		'<p> Sanitation Daamage : '+feature.get('sanitation_damage')+'</p><h5><p>Information </p></h5><p> '+ feature.get('type')+'</p><h5><p>Needs </p></h5><p> '+ feature.get('needs')+'</p><p>State :'+(feature.get('state') == 1 ? 'Responded<img src=../images/on.png /><br />'  : 'Waiting <img src=../images/off.png /><br />')+'</p> </center>';
   
         overlay.setPosition(coordinate);
          
