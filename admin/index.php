@@ -222,14 +222,16 @@ font-size:10pt;
         var table = '<a href="#" class="list-group-item list-group-item-action active"> Case Information</a>';
         //var el=feature.get('schedul').split(',');
         //for(var i=0;i<el.length;i++){
-          
+          table+='<a href="#" class="list-group-item list-group-item-action"> Name : '+feature.get('name')+'</a>';
           table+='<a href="#" class="list-group-item list-group-item-action"> Type : '+feature.get('type')+'</a>';
           table+='<a href="#" class="list-group-item list-group-item-action"> Information : '+feature.get('info')+'</a>';
+          table+='<a href="#" class="list-group-item list-group-item-action"> Date and time : '+feature.get('datetime')+'</a>';
           document.getElementById('table').innerHTML=table;
         
       
 
         content.innerHTML = '<center><h6>'+
+    ' Case Name :</h6><p> '+feature.get('name')+'</p><h6>'+
     ' Case Information :</h6><p> '+feature.get('info')+'</p><h6><p>Case Type </p></h6><p> '+ feature.get('type')+'</p>'+ '</center>';
         overlay.setPosition(coordinate);
         }

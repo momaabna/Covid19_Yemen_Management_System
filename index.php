@@ -83,7 +83,7 @@ Click on Case to Get Information
   
   <script>
           document.getElementById("main").classList.add("active");
-		  document.title='Flood Web Map';
+		  document.title='Covid-19 Web Map';
     var marker1 =new ol.style.Icon({
             anchor: [0.5, 1],
             src: 'images/on.png'
@@ -211,7 +211,7 @@ Click on Case to Get Information
           table+='<a href="#" class="list-group-item list-group-item-action"> Qurantine Name : '+feature.get('name')+'</a>';
           table+='<a href="#" class="list-group-item list-group-item-action"> Qurantine Information : '+feature.get('info')+'</a>';
           table+='<a href="#" class="list-group-item list-group-item-action"> Qurantine Power : '+feature.get('power')+' Cases</a>';
-          document.getElementById('table').innerHTML=table;
+          //document.getElementById('table').innerHTML=table;
         
       
 
@@ -220,7 +220,12 @@ Click on Case to Get Information
     ' Qurantine Information :</h6><p> '+feature.get('info')+'</p><h6><p>Qurantine Power </p></h6><p> '+ feature.get('power')+'</p>'+ '</center>';
         overlay.setPosition(coordinate);
 				
-			}else{
+			}else if(layer.H.name=='track'){
+        content.innerHTML = '<center><h6>Your Location</h6></center>';
+        overlay.setPosition(coordinate);
+
+
+    }else{
 
 
         var table = '<a href="#" class="list-group-item list-group-item-action active"> Case Information</a>';
@@ -229,7 +234,7 @@ Click on Case to Get Information
           
           table+='<a href="#" class="list-group-item list-group-item-action"> Type : '+feature.get('type')+'</a>';
           table+='<a href="#" class="list-group-item list-group-item-action"> Information : '+feature.get('info')+'</a>';
-          document.getElementById('table').innerHTML=table;
+          //document.getElementById('table').innerHTML=table;
 				
 			
 
@@ -259,6 +264,83 @@ function myTimer() {
       vector.setRadius(5*map.getView().getZoom());
     vector.setBlur(5*map.getView().getZoom());
     });
+
+
+
+
+
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
+    var html_data='<ul class="list-group">'+
+    '<li class="list-group-item d-flex justify-content-between align-items-center list-group-item-primary" style="font-size:20">'+'Country'+
+       '<span class="badge badge-light badge-pill right">'+
+       '<span class="badge badge-primary badge-pill right">'+'Total Cases'+'</span>'+
+       '<span class="badge badge-success badge-pill right">&#8593; '+'New Cases'+'</span>'+
+       '<span class="badge badge-danger badge-pill right">'+'Total Deaths'+'</span>'+
+       '</span></li>';
+    for (var i = 1 ; i < myObj['Countries'].length; i++) {
+       var newobj=myObj['Countries'][i];
+       var cou =newobj['Country'];
+       var newcases = newobj['NewConfirmed'];
+       var allcases = newobj['TotalConfirmed'];
+       var alldeaths = newobj['TotalDeaths'];
+       html_data+='<li class="list-group-item d-flex justify-content-between align-items-center" >'+cou+
+       '<span class="badge badge-light badge-pill right" style="font-size:15">'+
+       '<span class="badge badge-primary badge-pill right " >'+allcases+'</span>'+
+       '<span class="badge badge-success badge-pill right">&#8593; '+newcases+'</span>'+
+       '<span class="badge badge-danger badge-pill right">'+alldeaths+'</span>'+
+       '</span></li>';
+       
+
+    };
+    html_data+='</ul>';
+    
+    document.getElementById('table').innerHTML=html_data;
+
+
+  }
+};
+xmlhttp.open("GET", "https://api.covid19api.com/summary", true);
+xmlhttp.send(); 
+
+//======================geolocation
+/**
+var vs=new ol.source.Vector();
+var trackFeature = new ol.Feature();
+var view =map.getView();
+
+
+
+
+var geolocation = new ol.Geolocation({
+        tracking: true
+      });
+geolocation.on('change:position', function() {
+        var coordinate = geolocation.getPosition();
+        view.setCenter(ol.proj.fromLonLat(coordinate));
+        console.log(coordinate);
+        var iconFeature = new ol.Feature({
+         geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinate))  
+   });
+
+   //add icon to vector source
+   vs.addFeature(iconFeature);  
+
+        
+      });
+
+var trackLayer = new ol.layer.Vector({
+    source: vs,
+    name:'track'
+});
+map.addLayer(trackLayer);
+
+
+*/
+
 	  </script>
   
   
