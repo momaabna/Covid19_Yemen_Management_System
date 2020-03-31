@@ -38,7 +38,7 @@
         <a class="nav-link" href="new_case.php"><img src='../images/case.png' width='32px' height='32px' />Add Case <span class="sr-only"></span></a>
       </li>
       <li id="cases_list" class="nav-item ">
-        <a class="nav-link" href="cases_list.php"><img src='../images/users.png' width='32px' height='32px' />Cases List <span class="sr-only"></span></a>
+        <a class="nav-link" href="cases_list.php"><img src='../images/users.png' width='32px' height='32px' />Notifications List <span class="sr-only"></span></a>
       </li>
       <?php
 	  if($login_permission==0){

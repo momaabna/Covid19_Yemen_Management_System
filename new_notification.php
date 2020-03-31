@@ -157,7 +157,7 @@ mysqli_query($db,"SET NAMES 'utf8'");
  <div class="form-group col-md-12" ><h4>Complete this Data Carfully إملأ هذه البيانات بحذر</h4> <br /> </div>
 
 
-    <div class="form-group col-md-12" >1
+    <div class="form-group col-md-12" >
     <label for="p1">له تاريخ في السفر للخارج أو لمنطقة عالية الخطورة المحددة أو اتصال بدني قريب في ال 14 يومًا الماضية قبل ظهور الأعراض مع حالة مؤكدة من كورونا  أو العمل في مرفق رعاية صحية أو حضوره حيث تم قبول مرضى مصابين بكورونا
 
 <br />
@@ -169,7 +169,7 @@ mysqli_query($db,"SET NAMES 'utf8'");
   </div>
 
 
-    <div class="form-group col-md-12" >2
+    <div class="form-group col-md-12" >
     <label for="p2">مخالطة حاله مشخصه بفايرو س كورونا خلال اسبوعين ماضيين 
       <br />
 Exposure to confirmed COVID-19 cases in the last two week</label>
@@ -184,7 +184,7 @@ Exposure to confirmed COVID-19 cases in the last two week</label>
 
 
 
-  <div class="form-group col-md-12" >3
+  <div class="form-group col-md-12" >
     <label for="p3">مخالطة الابل او منتجاتها (مباشرة او غير مباشرة ) خلال الاسبوعين الماضيين 
       <br />
  Exposure to camel or products (direct or indirect*) in the last two weeks
@@ -195,7 +195,7 @@ Exposure to confirmed COVID-19 cases in the last two week</label>
   </select>
   </div>
 
-  <div class="form-group col-md-12" >4
+  <div class="form-group col-md-12" >
     <label for="p4">زيارة مؤسسة صحيه بها حالات كورونا خلال الاسبوعين الماضيين 
 <br />
  visit to a healthcare that had COVID-19 cases in the last two weeks</label>

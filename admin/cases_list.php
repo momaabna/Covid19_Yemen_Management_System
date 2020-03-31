@@ -94,11 +94,11 @@ include('./header.php');
           document.getElementById("cases_list").classList.add("active");
     var antena =new ol.style.Icon({
             anchor: [0.5, 1],
-            src: '../images/on.png'
+            src: '../images/off.png'
           });
     var antena20 = new ol.style.Icon({
             anchor: [0.5, 1],
-            src: '../images/off.png'
+            src: '../images/on.png'
           });
   var style = new ol.style.Style({
         image: new ol.style.Icon({
