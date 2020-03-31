@@ -98,12 +98,12 @@ include('./header.php');
           });
     var antena20 = new ol.style.Icon({
             anchor: [0.5, 1],
-            src: '../images/on.png'
+            src: '../images/off.png'
           });
   var style = new ol.style.Style({
         image: new ol.style.Icon({
             anchor: [0.5, 1],
-            src: '../images/marker.png'
+            src: '../images/off.png'
           }),
       text: new ol.style.Text({
           font: '12px Calibri,sans-serif',
@@ -130,16 +130,22 @@ var container = document.getElementById('popup');
 
  var vectorLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases.php',
+          url: '<?php echo $sitelink ; ?>gis/nots.php',
           format: new ol.format.GeoJSON()
         }),
         style: function(feature, resolution) {
-          style.getText().setText(resolution < 500 ? feature.get('name') : '');
-            if(resolution < 500){
-                style.setImage(antena);
+          if(feature.get('score')>=3){
+          style.setImage(antena);
+
         }else{
-            style.setImage(antena20);
+          style.setImage(antena20);
         }
+
+
+          style.getText().setText(resolution < 500 ? feature.get('name') : '');
+            
+
+        
           return style;
         }
       });
@@ -199,7 +205,7 @@ xhr.onreadystatechange= function() {
     if (this.status!==200) return; // or whatever error handling you want
     if(this.responseText!=old){
         vectorLayer.setSource(new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases.php',
+          url: '<?php echo $sitelink ; ?>gis/nots.php',
           format: new ol.format.GeoJSON()
         }));
         document.getElementById('monitortable').innerHTML= this.responseText;
@@ -224,7 +230,7 @@ closer.onclick = function() {
 
         content.innerHTML = '<center><h6>'+
     ' Case Name :</h6><p> '+feature.get('name')+'</p><h6>'+
-    ' Case Information :</h6><p> '+feature.get('info')+'</p><h6><p>Case Type </p></h6><p> '+ feature.get('type')+'</p>'+ '</center>';
+    ' Case Information :</h6><p> '+feature.get('info')+'</p><h6><p>Case Score </p></h6><p> '+ feature.get('score')+'</p>'+ '</center>';
         overlay.setPosition(coordinate);
      });
 

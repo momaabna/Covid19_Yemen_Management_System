@@ -6,13 +6,33 @@ include('./header.php');
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$name = htmlspecialchars(mysqli_real_escape_string($db,$_POST['name']));
-      $info = htmlspecialchars(mysqli_real_escape_string($db,$_POST['info'])); 
+      $info = 'No thing';//htmlspecialchars(mysqli_real_escape_string($db,$_POST['info'])); 
       $lon = htmlspecialchars(mysqli_real_escape_string($db,$_POST['lon'])); 
 	  $lat = htmlspecialchars(mysqli_real_escape_string($db,$_POST['lat']));
     $adress = htmlspecialchars(mysqli_real_escape_string($db,$_POST['adress']));
 	  $hc_name=htmlspecialchars(mysqli_real_escape_string($db,$_POST['hc_name']));
     $phone = htmlspecialchars(mysqli_real_escape_string($db,$_POST['phone']));
 	  $phone2 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['phone2']));
+$p1 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['p1']));
+
+$p2 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['p2']));
+
+$p3 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['p3']));
+
+$p4 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['p4']));
+
+$p5 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['p5']));
+
+$p6 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['p6']));
+
+$p7 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['p7']));
+
+$p8 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['p8']));
+
+$p9 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['p9']));
+
+$p10 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['p10']));
+$child =htmlspecialchars(mysqli_real_escape_string($db,$_POST['child']));
 	  $type=0;//htmlspecialchars(mysqli_real_escape_string($db,$_POST['type']));
 	  $state=-1;//htmlspecialchars(mysqli_real_escape_string($db,$_POST['state']));
     $nat_id=htmlspecialchars(mysqli_real_escape_string($db,$_POST['nat_id']));
@@ -24,7 +44,7 @@ if(isset($name) and isset($lon) and isset($info) and isset($lat) and isset($hc_n
 mysqli_query($db,"SET NAMES 'utf8'");
 				mysqli_query($db,'SET CHARACTER SET utf8'); 
 				//$sql = "INSERT INTO `tasks` (`location`, `f_userid`, `userid`, `title`, `info`, `datetime`, `state`) VALUES (GeomFromText('POINT($lon $lat)'), $f_user , $u_user, '$title', '$info', now(),  0)" ;
-				$sql="INSERT INTO `cases` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`,`nat_id`) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', 1, $state, $lon, $lat, $type, '$phone', '$phone2','$nat_id')";
+				$sql="INSERT INTO `notifications` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`,`nat_id`,`p1`,`p2`, `p3`, `p4`, `p5`, `p6`, `p7`, `p8`, `p9`, `p10`) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', 1, $state, $lon, $lat, $type, '$phone', '$phone2','$nat_id',$p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$child)";
    
    $res= mysqli_query($db,$sql); 
     if($res){
@@ -118,28 +138,188 @@ mysqli_query($db,"SET NAMES 'utf8'");
         <div  style="overflow-x:auto;height:450px;" id="form">
             <form method="post" enctype="multipart/form-data" accept-charset="utf-8">
   <div class="form-group col-md-12" >
-    <label for="exampleFormControlInput1">Case Name</label>
+    <label for="exampleFormControlInput1">Case Name   إسم الحالة</label>
     <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Case Name">
   </div>
   
   <div class="form-group col-md-12" >
-    <label for="exampleFormControlInput1">Case Adress</label>
+    <label for="exampleFormControlInput1">Case Adress    عنوان الحالة</label>
     <input type="text" class="form-control" name="adress" id="exampleFormControlInput1" placeholder="Case Adress">
   </div>
   <div class="form-group col-md-12" >
-    <label for="exampleFormControlInput1">Nearest Health Center</label>
+    <label for="exampleFormControlInput1">Nearest Health Center أقرب مركز صحي </label>
     <input type="text" class="form-control" name="hc_name" id="exampleFormControlInput1" placeholder="Health Center">
   </div>
   <div class="form-group col-md-12" >
-    <label for="nat">National ID</label>
+    <label for="nat">National ID     الرقم الوطني</label>
     <input type="text" class="form-control" name="nat_id" id="nat" placeholder="National ID">
   </div>
- 
+ <div class="form-group col-md-12" ><h4>Complete this Data Carfully إملأ هذه البيانات بحذر</h4> <br /> </div>
 
-<div class="form-group col-md-12">
-    <label for="exampleFormControlTextarea1">Case Information (Syndrome)</label>
-    <textarea class="form-control" name="info" id="exampleFormControlTextarea1"  rows="3"></textarea>
+
+    <div class="form-group col-md-12" >1
+    <label for="p1">له تاريخ في السفر للخارج أو لمنطقة عالية الخطورة المحددة أو اتصال بدني قريب في ال 14 يومًا الماضية قبل ظهور الأعراض مع حالة مؤكدة من كورونا  أو العمل في مرفق رعاية صحية أو حضوره حيث تم قبول مرضى مصابين بكورونا
+
+<br />
+ Had a History of Travel Abroad or to the Identified High-Risk Area or A Close Physical Contact in the Past 14 Days Prior to Symptoms Onset with a Confirmed Case of COVID-19 or Working in or Attended a Health Care Facility Where Patients with Confirmed COVID-19 Were Admitted.</label>
+    <select class="form-control" name="p1" id="p1">
+  <option value='0'  selected>No</option>
+  <option value='1'  >Yes</option>
+  </select>
   </div>
+
+
+    <div class="form-group col-md-12" >2
+    <label for="p2">مخالطة حاله مشخصه بفايرو س كورونا خلال اسبوعين ماضيين 
+      <br />
+Exposure to confirmed COVID-19 cases in the last two week</label>
+    <select class="form-control" name="p2" id="p2">
+  <option value='0'  selected>No</option>
+  <option value='1'  >Yes</option>
+  </select>
+  </div>
+
+
+  
+
+
+
+  <div class="form-group col-md-12" >3
+    <label for="p3">مخالطة الابل او منتجاتها (مباشرة او غير مباشرة ) خلال الاسبوعين الماضيين 
+      <br />
+ Exposure to camel or products (direct or indirect*) in the last two weeks
+</label>
+    <select class="form-control" name="p3" id="p3">
+  <option value='0'  selected>No</option>
+  <option value='1'  >Yes</option>
+  </select>
+  </div>
+
+  <div class="form-group col-md-12" >4
+    <label for="p4">زيارة مؤسسة صحيه بها حالات كورونا خلال الاسبوعين الماضيين 
+<br />
+ visit to a healthcare that had COVID-19 cases in the last two weeks</label>
+    <select class="form-control" name="p4" id="p4">
+  <option value='0'  selected>No</option>
+  <option value='1'  >Yes</option>
+  </select>
+  </div>
+
+
+
+
+
+<div class="form-group col-md-12" ><h4>Syndroms</h4> <br /> </div>
+    
+ <div class="col-md-12" >
+   <div class=" row" >
+<div class="form-group col-md-6" >
+    <label for="p5">
+الحمى 
+<br />
+ fever
+</label>
+    <select class="form-control" name="p5" id="p5">
+  <option value='0'  selected>No</option>
+  <option value='1'  >Yes</option>
+  </select>
+  </div>
+
+  <div class="form-group col-md-6" >
+    <label for="p6">
+(السعال (جديد أو متفاقم 
+<br />
+ Cough (New or Worsening)
+</label>
+    <select class="form-control" name="p6" id="p6">
+  <option value='0'  selected>No</option>
+  <option value='1'  >Yes</option>
+  </select>
+  </div>
+</div>
+</div>
+
+  <div class="col-md-12" >
+   <div class=" row" >
+<div class="form-group col-md-6" >
+    <label for="p7">
+(ضيق في التنفس (جديد أو متفاقم 
+<br />
+ Shortness of Breath (New or Worsening)
+</label>
+    <select class="form-control" name="p7" id="p7">
+  <option value='0'  selected>No</option>
+  <option value='1'  >Yes</option>
+  </select>
+  </div>
+
+  <div class="form-group col-md-6" >
+    <label for="p8">
+
+إلتهاب الحنجرة و / أو سيلان الأنف 
+<br />
+ Sore Throat and/or Runny Nose
+
+</label>
+    <select class="form-control" name="p8" id="p8">
+  <option value='0'  selected>No</option>
+  <option value='1'  >Yes</option>
+  </select>
+  </div>
+</div>
+</div>
+
+
+<div class="col-md-12" >
+   <div class=" row" >
+<div class="form-group col-md-6" >
+    <label for="p9">
+
+الغثيان والقيء و / أو الإسهال 
+<br />
+ Nausea, Vomiting and/or Diarrhea
+
+</label>
+    <select class="form-control" name="p9" id="p9">
+  <option value='0'  selected>No</option>
+  <option value='1'  >Yes</option>
+  </select>
+  </div>
+
+  <div class="form-group col-md-6" >
+    <label for="p10">
+
+الفشل الكلوي المزمن ومرض الشريان التاجي وفشل القلب 
+<br />
+ Chronic Renal Failure, Coronary Artery Disease/Heart Failure
+</label>
+    <select class="form-control" name="p10" id="p10">
+  <option value='0'  selected>No</option>
+  <option value='1'  >Yes</option>
+  </select>
+  </div>
+</div>
+</div>
+
+
+
+<br />
+
+<div class="col-md-12" >
+   <div class=" row" >
+<div class="form-group col-md-6" >
+    <label for="child"> هل الحالة طفل 
+<br />
+ Child
+</label>
+    <select class="form-control" name="child" id="child">
+  <option value='0'  selected>No</option>
+  <option value='1'  >Yes</option>
+  </select>
+  </div>
+</div>
+</div>
+
   <div class="col-md-12" >
   <div class=" row" >
   <div class="form-group col-md-6">

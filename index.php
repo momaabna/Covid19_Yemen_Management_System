@@ -261,8 +261,8 @@ function myTimer() {
     
 } 
 	   map.on('moveend', function(e) {
-      vector.setRadius(5*map.getView().getZoom());
-    vector.setBlur(5*map.getView().getZoom());
+      vector.setRadius(2*map.getView().getZoom());
+    vector.setBlur(2*map.getView().getZoom());
     });
 
 

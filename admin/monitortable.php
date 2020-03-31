@@ -8,7 +8,7 @@
         <th scope="col">Adress</th>
         <th scope="col">Phone</th>
         <th scope="col">A. Phone</th>
-        <th scope="col">Type</th>
+        <th scope="col">Score</th>
         <th scope="col">Location</th>
     </tr>
   </thead>
@@ -21,7 +21,7 @@ $q =mysqli_real_escape_string($db,$_GET['q']);
  
 mysqli_query($db,"set names utf8");
 
-$q = "SELECT `id`, `name`, `info`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`, `adress`  FROM `cases` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%' )";
+$q = "SELECT * FROM `notifications` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%' )";
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)) {
    
@@ -36,9 +36,56 @@ while($row = mysqli_fetch_assoc($result)) {
           $phone = $row['phone'];
            $phone2 = $row['phone2'];
            $type = $row['type'];
-          //'Tower_Type' => $row['Tower_Type'];
-          //'Equipment_Housing' => $row['Equipment_Housing'];
-          //'CW_Tower_Contractor' => $row['CW_Tower_Contractor'];
+          $p1= $row['p1'];
+          $p2= $row['p2'];
+          $p3= $row['p3'];
+          $p4= $row['p4'];
+          $p5= $row['p5'];
+          $p6= $row['p6'];
+          $p7= $row['p7'];
+          $p8= $row['p8'];
+          $p9= $row['p9'];
+          $p10= $row['p10'];
+          $child= $row['child'];
+
+
+          if($p1==1){
+            $score=5;
+            $score+=$p5;
+            $score+=$p6;
+            $score+=$p7;
+            $score+=$p8;
+
+
+
+          }else{
+            if($child==1){
+              $score=$p2*3;
+            $score=$p3*2;
+            $score=$p4*1;
+            $score+=$p5;
+            $score+=$p6;
+            $score+=$p7;
+
+            }else{
+              $score=$p2*3;
+            $score=$p3*2;
+            $score=$p4*1;
+            $score+=$p5*2;
+            $score+=$p6*2;
+            $score+=$p7*2;
+            $score+=$p8;
+            $score+=$p9;
+            $score+=$p10;
+
+
+
+            }
+            
+            
+
+
+          };
           
      echo "
     <tr>
@@ -49,7 +96,7 @@ while($row = mysqli_fetch_assoc($result)) {
     <td>$adress</td>
     <td>$phone</td>
     <td>$phone2</td>
-    <td>$type</td>
+    <td>$score</td>
     <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/on.png' width='20px' height='20px' /></a> <a href='del.php?table=cases&id=$id'><img src='../images/delete.png' width='20px' height='20px' /> </a></td>
     </tr>";
     
