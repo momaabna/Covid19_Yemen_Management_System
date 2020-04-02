@@ -51,13 +51,8 @@ mysqli_query($db,"SET NAMES 'utf8'");
         echo 'success';
     }else{
         echo 'failed';
-    }
-
+    };
 };
-
-
-
-
 } ;
 
 
