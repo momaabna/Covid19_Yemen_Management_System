@@ -27,9 +27,9 @@ This model (or table), will have these fields:
 
 - type of building (from BuildingsModel)
 - building description (text)
-- State
-- City
-- Neighborhood
+- State [from table states]
+- City [from table cities]
+- Neighborhood [from table neighborhoods]
 - Latitude
 - Longitude
 - Side code (it can be geo-coded)
@@ -55,3 +55,17 @@ This model (or table), will have these fields:
 - Whatsapp number
 
 
+#### State Model (lookup table)
+
+- ID
+- Name
+
+#### City Model (lookup table)
+
+- ID
+- Name
+
+#### Neighborhood Model (lookup table)
+
+- ID
+- Name
