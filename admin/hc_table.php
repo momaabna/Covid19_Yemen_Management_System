@@ -44,7 +44,12 @@ while($row = mysqli_fetch_assoc($result)) {
             $allcount_fetch = mysqli_fetch_array($allcount_result);
             $allcount = $allcount_fetch['allcount'];
          
-            $icon='hospital.png';
+            
+            if($allcount>=$power){
+              $icon='hospital_off.png';
+            }else{
+              $icon='hospital.png';
+            }
           
           
      echo "

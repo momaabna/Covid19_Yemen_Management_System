@@ -116,6 +116,10 @@ include('./header.php');
             anchor: [0.5, 1],
             src: '../images/hospital.png'
           });
+    var hospital_off = new ol.style.Icon({
+            anchor: [0.5, 1],
+            src: '../images/hospital_off20.png'
+          });
   var style = new ol.style.Style({
         image: new ol.style.Icon({
             anchor: [0.5, 1],
@@ -150,8 +154,14 @@ var container = document.getElementById('popup');
           format: new ol.format.GeoJSON()
         }),
         style: function(feature, resolution) {
-          
+          if(feature.get('cases')>=feature.get('power')){
+            style.setImage(hospital_off);
+
+          }else{
             style.setImage(hospital);
+          }
+          
+            
 
           
 
