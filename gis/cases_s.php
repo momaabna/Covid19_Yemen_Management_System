@@ -1,5 +1,6 @@
 <?php
 require_once('../config.php');
+require_once('./session2.php');
 
 
 $geojson = array(
@@ -24,7 +25,8 @@ while($row = mysqli_fetch_assoc($result)) {
 			
           'info' => $row['info'],
 		  'type' => $row['type'],
-		  'weight'=>($row['state']+1),
+		  'weight'=>1,
+		  'name'=>$row['name'],
 		  
 		  
 		  

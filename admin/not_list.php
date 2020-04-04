@@ -91,26 +91,14 @@ include('./header.php');
 
 <script>
           var q='';
-          document.getElementById("cases_list").classList.add("active");
-    var ok =new ol.style.Icon({
+          document.getElementById("not_list").classList.add("active");
+    var antena =new ol.style.Icon({
             anchor: [0.5, 1],
-            src: '../images/ok20.png'
+            src: '../images/off.png'
           });
-    var wait = new ol.style.Icon({
+    var antena20 = new ol.style.Icon({
             anchor: [0.5, 1],
-            src: '../images/wait20.png'
-          });
-    var dead = new ol.style.Icon({
-            anchor: [0.5, 1],
-            src: '../images/dead20.png'
-          });
-    var cases = new ol.style.Icon({
-            anchor: [0.5, 1],
-            src: '../images/cases20.png'
-          });
-    var ambulans = new ol.style.Icon({
-            anchor: [0.5, 1],
-            src: '../images/ambulans20.png'
+            src: '../images/on.png'
           });
   var style = new ol.style.Style({
         image: new ol.style.Icon({
@@ -142,24 +130,16 @@ var container = document.getElementById('popup');
 
  var vectorLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases_s.php?cookie='+getCookie('cookie'),
+          url: '<?php echo $sitelink ; ?>gis/nots.php',
           format: new ol.format.GeoJSON()
         }),
         style: function(feature, resolution) {
-          if(feature.get('state')==0){
-          style.setImage(wait);
-          }else if(feature.get('state')==1){
-            style.setImage(cases);
+          if(feature.get('score')>=3){
+          style.setImage(antena);
 
-          }else if(feature.get('state')==2){
-            style.setImage(ok);
-
-          }else if(feature.get('state')==3){
-          style.setImage(dead);
-        }else if(feature.get('state')==-1){
-            style.setImage(ambulans);
-
-          }
+        }else{
+          style.setImage(antena20);
+        }
 
 
           style.getText().setText(resolution < 500 ? feature.get('name') : '');
@@ -190,7 +170,7 @@ var container = document.getElementById('popup');
 //Reload Part
     
  var old='';   
-    var myVar = setInterval(myTimer, 2000);
+    var myVar = setInterval(myTimer, 5000);
 
 function myTimer() {
     
@@ -219,13 +199,13 @@ function userslist(){
     var cookie ;
     cookie = getCookie('cookie');
     
-xhr.open('GET', '<?php echo $sitelink ; ?>admin/cases_table.php?cookie='+ cookie +'&q='+q, true);
+xhr.open('GET', '<?php echo $sitelink ; ?>admin/monitortable.php?cookie='+ cookie +'&q='+q, true);
 xhr.onreadystatechange= function() {
     if (this.readyState!==4) return;
     if (this.status!==200) return; // or whatever error handling you want
     if(this.responseText!=old){
         vectorLayer.setSource(new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases_s.php?cookie='+getCookie('cookie'),
+          url: '<?php echo $sitelink ; ?>gis/nots.php',
           format: new ol.format.GeoJSON()
         }));
         document.getElementById('monitortable').innerHTML= this.responseText;
@@ -250,7 +230,7 @@ closer.onclick = function() {
 
         content.innerHTML = '<center><h6>'+
     ' Case Name :</h6><p> '+feature.get('name')+'</p><h6>'+
-    ' Case Information :</h6><p> '+feature.get('info')+'</p><h6><p>Case state </p></h6><p> '+ feature.get('state')+'</p>'+ '</center>';
+    ' Case Information :</h6><p> '+feature.get('info')+'</p><h6><p>Case Score </p></h6><p> '+ feature.get('score')+'</p>'+ '</center>';
         overlay.setPosition(coordinate);
      });
 

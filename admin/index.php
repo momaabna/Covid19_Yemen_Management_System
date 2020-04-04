@@ -80,6 +80,21 @@ font-size:10pt;
   </div>
   
   <script>
+    function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
           document.getElementById("main").classList.add("active");
     var marker1 =new ol.style.Icon({
             anchor: [0.5, 1],
@@ -111,7 +126,7 @@ font-size:10pt;
       });
 	   var vectorLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases.php',
+          url: '<?php echo $sitelink ; ?>gis/cases_s.php?cookie='+getCookie('cookie'),
           format: new ol.format.GeoJSON()
         }),
         style: function(feature, resolution) {
@@ -125,7 +140,7 @@ font-size:10pt;
         }
       });
      var v = new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases.php',
+          url: '<?php echo $sitelink ; ?>gis/cases_s.php?cookie='+getCookie('cookie'),
           format: new ol.format.GeoJSON()
         });
      
@@ -242,7 +257,7 @@ font-size:10pt;
 
 function myTimer() {
     vectorLayer.setSource(new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases.php',
+          url: '<?php echo $sitelink ; ?>gis/cases_s.php?cookie='+getCookie('cookie'),
           format: new ol.format.GeoJSON()
         }));
     

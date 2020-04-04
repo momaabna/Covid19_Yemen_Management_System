@@ -11,6 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	  $lat = htmlspecialchars(mysqli_real_escape_string($db,$_POST['lat']));
     $adress = htmlspecialchars(mysqli_real_escape_string($db,$_POST['adress']));
 	  $hc_name=htmlspecialchars(mysqli_real_escape_string($db,$_POST['hc_name']));
+    $hc_id=htmlspecialchars(mysqli_real_escape_string($db,$_POST['hc_id']));
     $phone = htmlspecialchars(mysqli_real_escape_string($db,$_POST['phone']));
 	  $phone2 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['phone2']));
 	  $type=htmlspecialchars(mysqli_real_escape_string($db,$_POST['type']));
@@ -23,7 +24,7 @@ if(isset($name) and isset($lon) and isset($info) and isset($lat) and isset($hc_n
 mysqli_query($db,"SET NAMES 'utf8'");
 				mysqli_query($db,'SET CHARACTER SET utf8'); 
 				//$sql = "INSERT INTO `tasks` (`location`, `f_userid`, `userid`, `title`, `info`, `datetime`, `state`) VALUES (GeomFromText('POINT($lon $lat)'), $f_user , $u_user, '$title', '$info', now(),  0)" ;
-				$sql="INSERT INTO `cases` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', 1, $state, $lon, $lat, $type, '$phone', '$phone2')";
+				$sql="INSERT INTO `cases` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', $hc_id, $state, $lon, $lat, $type, '$phone', '$phone2')";
    
    $res= mysqli_query($db,$sql); 
     if($res){
@@ -129,6 +130,35 @@ mysqli_query($db,"SET NAMES 'utf8'");
     <label for="exampleFormControlInput1">Health Center</label>
     <input type="text" class="form-control" name="hc_name" id="exampleFormControlInput1" placeholder="Health Center">
   </div>
+  <div class="form-group col-md-12" >
+    <label for="hc_id">Qurantine Name</label>
+    <select class="form-control" name="hc_id" id="hc_id">
+      <?php 
+      $q = "SELECT * FROM `hc` ";
+      $c=1;
+$result =mysqli_query($db,$q);
+while($row = mysqli_fetch_assoc($result)) {
+  $hc_n=$row['name'];
+  $hc_id=$row['id'];
+  if ($c==1){
+    echo "<option value='".$hc_id."'  selected>".$hc_n."</option>";
+  }else{
+    echo "<option value='".$hc_id."' >".$hc_n."</option>";
+
+  }
+  $c+=1;
+  
+
+}
+
+
+
+
+      ?>
+      
+      
+  </select>
+  </div>
  
 
 <div class="form-group col-md-12">
@@ -149,17 +179,23 @@ mysqli_query($db,"SET NAMES 'utf8'");
     <div class="form-group col-md-6" >
     <label for="type">Case Type</label>
     <select class="form-control" name="type" id="type">
-  <option value='1'  selected>A</option>
-  <option value='2'  >B</option>
+      <option value='0'  selected>Suspected</option>
+    <option value='1'  >Affected</option>
+    <option value='2'  >Sensitive</option>
+    <option value='3'  >Was Abroad</option>
+
+
+  
   </select>
   </div>
   <div class="form-group col-md-6" >
     <label for="state">Case State</label>
     <select class="form-control" name="state" id="state">
-  <option value='0'  selected>Suspected</option>
-  <option value='1'  >Affected</option>
-  <option value='2'  >Sensitive</option>
-
+      <option value='0'  selected>Under Test</option>
+      <option value='1'  >Confirmed</option>
+      <option value='2'  >Healed</option>
+      <option value='3'  >Dead</option>
+  
   </select>
   </div>
 </div>
@@ -226,6 +262,21 @@ mysqli_query($db,"SET NAMES 'utf8'");
 
 
 <script>
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
           var q='';
           document.getElementById("new_case").classList.add("active");
     var marker1 =new ol.style.Icon({
@@ -272,7 +323,7 @@ var container = document.getElementById('popup');
 
  var vectorLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases.php',
+          url: '<?php echo $sitelink ; ?>gis/cases_s.php?cookie='+getCookie('cookie'),
           format: new ol.format.GeoJSON()
         }),
         style: function(feature, resolution) {
@@ -282,8 +333,10 @@ var container = document.getElementById('popup');
             }else{
                 style.setImage(marker2);
             }
+            style.getText().setText(resolution < 500 ? feature.get('name') : '');
           return style;
         }
+
               
        
       });
@@ -320,7 +373,7 @@ var container = document.getElementById('popup');
 
 function myTimer() {
     vectorLayer.setSource(new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases.php',
+          url: '<?php echo $sitelink ; ?>gis/cases_s.php?cookie='+getCookie('cookie'),
           format: new ol.format.GeoJSON()
         }));
    

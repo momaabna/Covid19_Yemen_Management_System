@@ -15,7 +15,7 @@
   <tbody>
 <?php
 require_once('../config.php');
-//include('./session.php');
+include('./session2.php');
 $online_thresh =1;
 $q =mysqli_real_escape_string($db,$_GET['q']);
  
@@ -91,6 +91,16 @@ while($row = mysqli_fetch_assoc($result)) {
           }else{
             $icon='on.png';
           };
+          $q = "SELECT * FROM `hc` ";
+      $h='';
+$re =mysqli_query($db,$q);
+while($row = mysqli_fetch_assoc($re)) {
+  $hc_n=$row['name'];
+  $hc_id=$row['id'];
+  $h.="<a class='dropdown-item' href='./not_to_case.php?hc=".$hc_id."&id=".$id."'>Send Case to : ".$hc_n."</a>";
+   
+
+}
           
      echo "
     <tr>
@@ -102,7 +112,18 @@ while($row = mysqli_fetch_assoc($result)) {
     <td>$phone</td>
     <td>$phone2</td>
     <td>$score</td>
-    <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='del.php?table=cases&id=$id'><img src='../images/delete.png' width='20px' height='20px' /> </a></td>
+    <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='del.php?table=nots&id=$id'><img src='../images/delete.png' width='20px' height='20px' /> </a> 
+
+
+
+  <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+    
+  </button>
+  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    ".$h."
+  </div>
+
+    </td>
     </tr>";
     
     

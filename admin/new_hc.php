@@ -347,8 +347,8 @@ closer.onclick = function() {
             coord, 'EPSG:3857', 'EPSG:4326');
          document.getElementById('lon').value = proj[0];
           document.getElementById('lat').value = proj[1];
-          content.innerHTML = '<center><p>Case Name : ' + feature.get('name')+'</p>'+
-		'<p> Case information : '+feature.get('info')+'</p><h5><p>Case Type </p></h5><p> '+ feature.get('type')+'</p><h5></center>';
+          content.innerHTML = '<center><p>Quarantine  Name : ' + feature.get('name')+'</p><br />'+
+		'<p> Quarantine  information : '+feature.get('info')+'</p><br /><h5><p>Quarantine Power </p></h5><p> '+ feature.get('power')+'</p><h5> <br /><a href=del.php?table=hc&id='+feature.get('id')+' ><img src="../images/delete.png" /></a></center>';
   
         overlay.setPosition(coordinate);
          
