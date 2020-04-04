@@ -8,6 +8,7 @@
         <th scope="col">Adress</th>
         <th scope="col">Phone</th>
         <th scope="col">A. Phone</th>
+        <th scope="col">Power</th>
         <th scope="col">N.Cases</th>
         <th scope="col">Location</th>
     </tr>
@@ -31,6 +32,8 @@ while($row = mysqli_fetch_assoc($result)) {
 			$name = $row['name'];
           $info = $row['info'];
           $state = $row['state'];
+          $power = $row['power'];
+
           //'Site_Type' => $row['Site_Type'];
           $adress = $row['adress'];
           $phone = $row['phone'];
@@ -53,6 +56,7 @@ while($row = mysqli_fetch_assoc($result)) {
     <td>$adress</td>
     <td>$phone</td>
     <td>$phone2</td>
+    <td>$power</td>
     <td>$allcount</td>
     <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='del.php?table=hc&id=$id'><img src='../images/delete.png' width='20px' height='20px' /> </a></td>
     </tr>";
