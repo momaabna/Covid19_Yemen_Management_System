@@ -7,7 +7,7 @@
       <th scope="col">State</th>
         <th scope="col">Adress</th>
         <th scope="col">Phone</th>
-        <th scope="col">A. Phone</th>
+        <th scope="col">A.Phone</th>
         <th scope="col">Power</th>
         <th scope="col">N.Cases</th>
         <th scope="col">Location</th>
