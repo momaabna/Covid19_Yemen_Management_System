@@ -52,8 +52,8 @@ if($count==1){
 }
 
 body {
-  background: #007bff;
-  background: linear-gradient(to right, #abb7ce, #33AEFF);
+  background: #ABB7CE;
+  
 }
 
 .card-signin {
@@ -166,6 +166,7 @@ body {
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign In</h5>
+            <img class="rounded mx-auto d-block" src="../images/G&I.png" width="200px" height="200px" />
             <form class="form-signin" method='POST'>
               <div class="form-label-group">
                 <input name="user" type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
