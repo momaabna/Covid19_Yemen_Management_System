@@ -13,7 +13,10 @@ $q = "SELECT * FROM `hc` ";
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)) {
     $id =$row['id'];
-    
+    $allcount_query = "SELECT count(*) as allcount FROM cases WHERE (hc_id=$id and state<2);";
+            $allcount_result = mysqli_query($db,$allcount_query);
+            $allcount_fetch = mysqli_fetch_array($allcount_result);
+            $allcount = $allcount_fetch['allcount'];
     $feature = array(
         'type' => 'Feature', 
       'geometry' => array(
@@ -29,7 +32,10 @@ while($row = mysqli_fetch_assoc($result)) {
 		  
 		  'power'=>$row['power'],
 		  'adress'=>$row['adress'],
-		  'state'=>$row['state']
+		  'state'=>$row['state'],
+      'cases'=>$allcount,
+
+       
 		  
           
           

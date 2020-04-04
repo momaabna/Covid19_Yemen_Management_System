@@ -222,13 +222,15 @@ font-size:10pt;
           table+='<a href="#" class="list-group-item list-group-item-action"> Qurantine Name : '+feature.get('name')+'</a>';
           table+='<a href="#" class="list-group-item list-group-item-action"> Qurantine Information : '+feature.get('info')+'</a>';
           table+='<a href="#" class="list-group-item list-group-item-action"> Qurantine Power : '+feature.get('power')+' Cases</a>';
+          table+='<a href="#" class="list-group-item list-group-item-action"> Qurantine Current Cases : '+feature.get('cases')+' Cases</a>';
+
           document.getElementById('table').innerHTML=table;
         
       
 
         content.innerHTML = '<center><h6>'+
     ' Qurantine Name :</h6><p> '+feature.get('name')+'</p><h6>'+
-    ' Qurantine Information :</h6><p> '+feature.get('info')+'</p><h6><p>Qurantine Power </p></h6><p> '+ feature.get('power')+'</p>'+ '</center>';
+    ' Qurantine Information :</h6><p> '+feature.get('info')+'</p><h6><p>Qurantine Power </p></h6><p> '+ feature.get('power')+'</p><h6><p>Qurantine Current Cases </p></h6><p> '+ feature.get('cases')+'</p>'+ '</center>';
         overlay.setPosition(coordinate);
         
       }else{

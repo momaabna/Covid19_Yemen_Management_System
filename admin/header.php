@@ -34,6 +34,9 @@
 	  <li id="new_hc" class="nav-item ">
         <a class="nav-link" href="new_hc.php"><img src='../images/add.png' width='25px' height='25px' />Add Quarantine <span class="sr-only"></span></a>
       </li>
+       <li id="hc_list" class="nav-item ">
+        <a class="nav-link" href="hc_list.php"><img src='../images/hospital.png' width='25px' height='25px' />Quarantines <span class="sr-only"></span></a>
+      </li>
       <li id="new_case" class="nav-item ">
         <a class="nav-link" href="new_case.php"><img src='../images/case.png' width='32px' height='32px' />Add Case <span class="sr-only"></span></a>
       </li>
@@ -41,7 +44,7 @@
         <a class="nav-link" href="cases_list.php"><img src='../images/cases.png' width='32px' height='32px' />Cases <span class="sr-only"></span></a>
       </li>
       <li id="not_list" class="nav-item ">
-        <a class="nav-link" href="not_list.php"><img src='../images/users.png' width='32px' height='32px' />Notifications List <span class="sr-only"></span></a>
+        <a class="nav-link" href="not_list.php"><img src='../images/users.png' width='32px' height='32px' />Notifications <span class="sr-only"></span></a>
       </li>
 
       <?php
