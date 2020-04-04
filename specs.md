@@ -64,8 +64,22 @@ This model (or table), will have these fields:
 
 - ID
 - Name
+- StateID
 
 #### Neighborhood Model (lookup table)
 
 - ID
 - Name
+- StateID
+- CityID
+
+
+
+## TODOs
+
+When adding a new quarantine, do the following:
+
+- get the state from table cities (dropdown menu)
+- get cities in selected states (select * from cities where stateid = ?)
+- get neighborhoods from the selected state AND city
+
