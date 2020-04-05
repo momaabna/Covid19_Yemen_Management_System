@@ -44,7 +44,7 @@ if(isset($name) and isset($lon) and isset($info) and isset($lat) and isset($hc_n
 mysqli_query($db,"SET NAMES 'utf8'");
 				
 				//$sql = "INSERT INTO `tasks` (`location`, `f_userid`, `userid`, `title`, `info`, `datetime`, `state`) VALUES (GeomFromText('POINT($lon $lat)'), $f_user , $u_user, '$title', '$info', now(),  0)" ;
-				$sql="INSERT INTO `notifications` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`,`nat_id`,`p1`,`p2`, `p3`, `p4`, `p5`, `p6`, `p7`, `p8`, `p9`, `p10`,child) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', 1, $state, $lon, $lat, $type, '$phone', '$phone2','$nat_id',$p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$child)";
+				$sql="INSERT INTO `notifications` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`,`nat_id`,`p1`,`p2`, `p3`, `p4`, `p5`, `p6`, `p7`, `p8`, `p9`, `p10`,child,nat_id) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', 1, $state, $lon, $lat, $type, '$phone', '$phone2','$nat_id',$p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$child,'$nat_id')";
    
    $res= mysqli_query($db,$sql); 
     if($res){
@@ -60,26 +60,7 @@ mysqli_query($db,"SET NAMES 'utf8'");
 
 } 
         
-            $long='';
-            $latg='';
-            $userg =0;
-        
-         
             
-            if(isset($_GET['site'])){
-                
-        $site = mysqli_real_escape_string($db,$_GET['site']);
-        $q = "SELECT X(location) as lon , Y(location) as lat From monitor WHERE id=$site ";
-        $re=mysqli_query($db,$q);
-        $row = mysqli_fetch_assoc($re);
-        $long=$row['lon'];
-        $latg=$row['lat'];
-            
-            };
-            if(isset($_GET['user'])){
-                $userg = mysqli_real_escape_string($db,$_GET['user']);
-     
-            }
 	   
 
 

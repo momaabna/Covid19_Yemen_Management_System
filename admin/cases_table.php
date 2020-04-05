@@ -14,14 +14,31 @@
   </thead>
   <tbody>
 <?php
+
 require_once('../config.php');
 include('./session2.php');
+
+function getstatename($db,$code){
+$q = "SELECT * FROM `states` WHERE admin1Pcode='$code' ";
+$result1 =mysqli_query($db,$q);
+$row1 = mysqli_fetch_assoc($result1);
+$name = $row1['admin1Name_en'];
+  return $name;
+};
 $online_thresh =1;
 $q =mysqli_real_escape_string($db,$_GET['q']);
- 
+ $state_ =mysqli_real_escape_string($db,$_GET['state']);
+ $loc =mysqli_real_escape_string($db,$_GET['loc']);
 mysqli_query($db,"set names utf8");
+if($state_==''){
+  $q = "SELECT * FROM `cases` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') ";
+}elseif($loc==''){
+  $q = "SELECT * FROM `cases` WHERE ((name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state_ = '$state_' ) ) ";
 
-$q = "SELECT * FROM `cases` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%' ) ";
+}else{
+  $q = "SELECT * FROM `cases` WHERE ((name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state_ = '$state_' AND locality = '$loc') ) ";
+}
+
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)) {
    
@@ -30,7 +47,8 @@ while($row = mysqli_fetch_assoc($result)) {
             $id = $row['id'];
 			$name = $row['name'];
           $info = $row['info'];
-          $state = $row['state'];
+          $state_ = getstatename($db,$row['state_']);
+          $state=$row['state'];
           //'Site_Type' => $row['Site_Type'];
           $adress = $row['adress'];
           $phone = $row['phone'];
@@ -54,7 +72,7 @@ while($row = mysqli_fetch_assoc($result)) {
       <th>$id</th>
       <td>$name</td>
       <td>$info</td>
-      <td>$state</td>
+      <td>$state_</td>
     <td>$adress</td>
     <td>$phone</td>
     <td>$phone2</td>

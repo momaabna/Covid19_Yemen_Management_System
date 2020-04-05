@@ -16,6 +16,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	  $phone2 =htmlspecialchars(mysqli_real_escape_string($db,$_POST['phone2']));
 	  $type=htmlspecialchars(mysqli_real_escape_string($db,$_POST['type']));
 	  $state=htmlspecialchars(mysqli_real_escape_string($db,$_POST['state']));
+    $state_=htmlspecialchars(mysqli_real_escape_string($db,$_POST['state_']));
+    $locality=htmlspecialchars(mysqli_real_escape_string($db,$_POST['locality']));
 	  
     
 
@@ -24,7 +26,7 @@ if(isset($name) and isset($lon) and isset($info) and isset($lat) and isset($hc_n
 mysqli_query($db,"SET NAMES 'utf8'");
 				mysqli_query($db,'SET CHARACTER SET utf8'); 
 				//$sql = "INSERT INTO `tasks` (`location`, `f_userid`, `userid`, `title`, `info`, `datetime`, `state`) VALUES (GeomFromText('POINT($lon $lat)'), $f_user , $u_user, '$title', '$info', now(),  0)" ;
-				$sql="INSERT INTO `cases` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', $hc_id, $state, $lon, $lat, $type, '$phone', '$phone2')";
+				$sql="INSERT INTO `cases` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`,`state_`,`locality`) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', $hc_id, $state, $lon, $lat, $type, '$phone', '$phone2','$state_','$locality')";
    
    $res= mysqli_query($db,$sql); 
     if($res){
@@ -147,16 +149,9 @@ while($row = mysqli_fetch_assoc($result)) {
 
   }
   $c+=1;
-  
-
 }
-
-
-
-
       ?>
-      
-      
+
   </select>
   </div>
  
@@ -165,6 +160,7 @@ while($row = mysqli_fetch_assoc($result)) {
     <label for="exampleFormControlTextarea1">Case Information</label>
     <textarea class="form-control" name="info" id="exampleFormControlTextarea1"  rows="3"></textarea>
   </div>
+  <div class="col-md-12" >
   <div class=" row" >
   <div class="form-group col-md-6">
     <label for="needs">Phone</label>
@@ -175,6 +171,8 @@ while($row = mysqli_fetch_assoc($result)) {
     <input class="form-control" name="phone2" id="needs"  ></textarea>
   </div>
 </div>
+</div>
+<div class="col-md-12" >
 <div class=" row" >
     <div class="form-group col-md-6" >
     <label for="type">Case Type</label>
@@ -199,7 +197,59 @@ while($row = mysqli_fetch_assoc($result)) {
   </select>
   </div>
 </div>
+</div>
+  <div class="col-md-12" >
+<div class=" row" >
+    <div class="form-group col-md-6" >
+    <label for="state_">State</label>
+    <select class="form-control" name="state_" id="state_" onchange="getlocality()">
+      <?php 
+      $q = "SELECT DISTINCT admin1Pcode, admin1Name_en FROM `states` order by admin1Pcode ";
+      $c=1;
+$result =mysqli_query($db,$q);
+while($row = mysqli_fetch_assoc($result)) {
+  $hc_n=$row['admin1Name_en'];
+  $hc_id=$row['admin1Pcode'];
+  if ($c==1){
+    echo "<option value='".$hc_id."'  selected>".$hc_n."</option>";
+  }else{
+    echo "<option value='".$hc_id."' >".$hc_n."</option>";
+
+  }
+  $c+=1;
+}
+      ?>
+
+
   
+  </select>
+  </div>
+  <div class="form-group col-md-6" >
+    <label for="locality">Locality </label>
+    <select class="form-control" name="locality" id="locality">
+      <?php 
+      $q = "SELECT admin2Pcode, admin2Name_en FROM `states` WHERE admin1Pcode='SD01' ;";
+      $c=1;
+$result =mysqli_query($db,$q);
+while($row = mysqli_fetch_assoc($result)) {
+  $hc_n=$row['admin2Name_en'];
+  $hc_id=$row['admin2Pcode'];
+  if ($c==1){
+    echo "<option value='".$hc_id."'  selected>".$hc_n."</option>";
+  }else{
+    echo "<option value='".$hc_id."' >".$hc_n."</option>";
+
+  }
+  $c+=1;
+}
+      ?>
+
+  
+  </select>
+  </div>
+</div>
+</div>
+
     <div class="col-md-12" >
    <div class=" row" >
   <div class="form-group col-md-6" >
@@ -262,6 +312,33 @@ while($row = mysqli_fetch_assoc($result)) {
 
 
 <script>
+
+function getlocality() {
+    var loc = document.getElementById('locality');
+    var st = document.getElementById('state_');
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
+    var html_data='';
+    
+    for (var i = 0 ; i < myObj['localitis'].length; i++) {
+       var newobj=myObj['localitis'][i];
+       var code =newobj['CODE'];
+       var name = newobj['name'];
+       
+       html_data+='<option value="'+code+'">'+name+'</option>';
+    };
+  loc.innerHTML=html_data;
+
+  }
+};
+xmlhttp.open("GET", "../get_locality.php?id="+st.options[st.selectedIndex].value, true);
+xmlhttp.send(); 
+
+}
+
+
   function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);

@@ -68,9 +68,58 @@ include('./header.php');
   
 </div>
 <div style="border-style: solid;border-width: 1px;border-color:#007BFF;">
-       <div class="form-inline my-2 my-lg-0">
-      <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onchange='userslist();'>
-      <button class="btn btn-outline-success my-2 my-sm-0" onclick='userslist();'>Search</button>
+       <div class="form-inline  ">
+        <div class="form-group mb-2" >
+        <label for="search">Search</label>
+      <input id="search" class="form-control " type="search" placeholder="Search" aria-label="Search" onchange='userslist();' >
+    </div>
+      <div class="form-group mb-2" >
+    <label for="state_">State</label>
+    <select class="form-control" name="state_" id="state_" onchange="getlocality()">
+      <?php 
+      $q = "SELECT DISTINCT admin1Pcode, admin1Name_en FROM `states` order by admin1Pcode ";
+      $c=1;
+$result =mysqli_query($db,$q);
+echo "<option value=''  selected>All</option>";
+while($row = mysqli_fetch_assoc($result)) {
+  $hc_n=$row['admin1Name_en'];
+  $hc_id=$row['admin1Pcode'];
+  
+    echo "<option value='".$hc_id."' >".$hc_n."</option>";
+
+  
+  $c+=1;
+}
+      ?>
+
+
+  
+  </select>
+  </div>
+  <div class="form-group mb-2" >
+    <label for="locality">Locality</label>
+    <select class="form-control" name="locality" id="locality">
+      <?php 
+      $q = "SELECT admin2Pcode, admin2Name_en FROM `states` WHERE admin1Pcode='SD01' ;";
+      $c=1;
+$result =mysqli_query($db,$q);
+echo "<option value=''  selected>All</option>";
+while($row = mysqli_fetch_assoc($result)) {
+  $hc_n=$row['admin2Name_en'];
+  $hc_id=$row['admin2Pcode'];
+
+    
+ 
+    echo "<option value='".$hc_id."' >".$hc_n."</option>";
+
+  $c+=1;
+}
+      ?>
+
+  
+  </select>
+  </div>
+      <button class="btn btn-outline-primary" onclick='userslist();'>Search</button>
     </div>
        </div>
         
@@ -90,6 +139,32 @@ include('./header.php');
 
 
 <script>
+
+
+  function getlocality() {
+    var loc = document.getElementById('locality');
+    var st = document.getElementById('state_');
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
+    var html_data='';
+    
+    for (var i = 0 ; i < myObj['localitis'].length; i++) {
+       var newobj=myObj['localitis'][i];
+       var code =newobj['CODE'];
+       var name = newobj['name'];
+       
+       html_data+='<option value="'+code+'">'+name+'</option>';
+    };
+  loc.innerHTML=html_data;
+
+  }
+};
+xmlhttp.open("GET", "../get_locality.php?id="+st.options[st.selectedIndex].value, true);
+xmlhttp.send(); 
+
+}
           var q='';
           document.getElementById("cases_list").classList.add("active");
     var ok =new ol.style.Icon({
@@ -213,13 +288,23 @@ function getCookie(cname) {
     return "";
 }
 function userslist(){
-    q=document.getElementById("search").value;
+    var q=document.getElementById("search").value;
+    var st=document.getElementById("state_");
+    var loc=document.getElementById("locality");
+    if(loc.options[loc.selectedIndex] ==undefined){
+      var loc1='';
+    }else{
+      var loc1=loc.options[loc.selectedIndex].value;
+      
+    }
+    
+    var st1 = st.options[st.selectedIndex].value;
   
     var xhr= new XMLHttpRequest();
     var cookie ;
     cookie = getCookie('cookie');
     
-xhr.open('GET', '<?php echo $sitelink ; ?>admin/cases_table.php?cookie='+ cookie +'&q='+q, true);
+xhr.open('GET', '<?php echo $sitelink ; ?>admin/cases_table.php?cookie='+ cookie +'&q='+q+'&state='+st1+'&loc='+loc1, true);
 xhr.onreadystatechange= function() {
     if (this.readyState!==4) return;
     if (this.status!==200) return; // or whatever error handling you want

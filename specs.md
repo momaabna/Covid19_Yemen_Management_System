@@ -6,17 +6,21 @@ This document enlists the agreed upon specs for Covid-19 Tracker system.
 
 - build a website for administrative use. It has a *view-only* mode for non administrator
 - the website (and the system; as it will include apis) will have:
-    - list of quarantines locations
-    - list of cases
+    - List of quarantines locations
+    - List of cases
+    - List of reported cases
     - Locations of quarantines
     - Locations of registered cases
     - Add new quarantine
     - Add new case
-    - Assign a new case to a quarantine
-    - Search for quarantines (regex)
+    - Report case (for non administrator) (WHO form)
+    - Review reported cases and assign confirmed ones to a quarantine
+    - [-] Send confirmed cases to bring teams(Ambulance)
+    - Search through quarantines (regex)
     - Search through cases (regex)
-    - [] fitler quarantines geographically
-    - [] filter quarantines on their categories
+    - [-] fitler quarantines geographically
+    - [-] filter quarantines on their categories
+    - [-] buffering quarantines to detect resk geography
 
 
 ### System models
@@ -53,6 +57,7 @@ This model (or table), will have these fields:
 - Mobile number
 - Email
 - Whatsapp number
+- [-] Permissions
 
 
 #### State Model (lookup table)
