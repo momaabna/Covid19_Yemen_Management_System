@@ -68,12 +68,12 @@ include('./header.php');
   
 </div>
 <div style="border-style: solid;border-width: 1px;border-color:#007BFF;">
-       <div class="form-inline  ">
-        <div class="form-group mb-2" >
+       <div class="form-row  ">
+        <div class="form-group col-auto" >
         <label for="search">Search</label>
       <input id="search" class="form-control " type="search" placeholder="Search" aria-label="Search" onchange='userslist();' >
     </div>
-      <div class="form-group mb-2" >
+      <div class="form-group col-auto" >
     <label for="state_">State</label>
     <select class="form-control" name="state_" id="state_" onchange="getlocality()">
       <?php 
@@ -96,7 +96,7 @@ while($row = mysqli_fetch_assoc($result)) {
   
   </select>
   </div>
-  <div class="form-group mb-2" >
+  <div class="form-group col-auto" >
     <label for="locality">Locality</label>
     <select class="form-control" name="locality" id="locality">
       <?php 
@@ -119,7 +119,7 @@ while($row = mysqli_fetch_assoc($result)) {
   
   </select>
   </div>
-      <button class="btn btn-outline-primary" onclick='userslist();'>Search</button>
+      <button class="btn btn-outline-primary col-auto" onclick='userslist();'>Search</button>
     </div>
        </div>
         
