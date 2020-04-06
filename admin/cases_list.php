@@ -70,11 +70,11 @@ include('./header.php');
 <div style="border-style: solid;border-width: 1px;border-color:#007BFF;">
        <div class="form-row  ">
         <div class="form-group col-auto" >
-        <label for="search">Search</label>
+        <!--<label for="search">Search</label> -->
       <input id="search" class="form-control " type="search" placeholder="Search" aria-label="Search" onchange='userslist();' >
     </div>
       <div class="form-group col-auto" >
-    <label for="state_">State</label>
+    <!--<label for="state_">State</label>-->
     <select class="form-control" name="state_" id="state_" onchange="getlocality()">
       <?php 
       $q = "SELECT DISTINCT admin1Pcode, admin1Name_en FROM `states` order by admin1Pcode ";
@@ -97,7 +97,7 @@ while($row = mysqli_fetch_assoc($result)) {
   </select>
   </div>
   <div class="form-group col-auto" >
-    <label for="locality">Locality</label>
+    <!--<label for="locality">Locality</label>-->
     <select class="form-control" name="locality" id="locality">
       <?php 
       $q = "SELECT admin2Pcode, admin2Name_en FROM `states` WHERE admin1Pcode='SD01' ;";
@@ -119,7 +119,7 @@ while($row = mysqli_fetch_assoc($result)) {
   
   </select>
   </div>
-      <button class="btn btn-outline-primary col-auto" onclick='userslist();'>Search</button>
+      <button class="btn btn-outline-primary " onclick='userslist();'>Search</button>
     </div>
        </div>
         

@@ -38,6 +38,9 @@ while($row = mysqli_fetch_assoc($result)) {
           $adress = $row['adress'];
           $phone = $row['phone'];
            $phone2 = $row['phone2'];
+           $o_a =$row['owner_acceptance'];
+           $r_a =$row['resistnce_acceptance'];
+
            
            $allcount_query = "SELECT count(*) as allcount FROM cases WHERE (hc_id=$id and state<2);";
            $allcount_result = mysqli_query($db,$allcount_query);
@@ -45,11 +48,14 @@ while($row = mysqli_fetch_assoc($result)) {
             $allcount = $allcount_fetch['allcount'];
          
             
-            if($allcount>=$power){
-              $icon='hospital_off.png';
-            }else{
-              $icon='hospital.png';
-            }
+            if($o_a==1 and $r_a==1){
+            
+            $icon='green.png';
+          }elseif($o_a==1){
+            $icon='yellow.png';
+          }else{
+            $icon='red.png';
+          }
           
           
      echo "
