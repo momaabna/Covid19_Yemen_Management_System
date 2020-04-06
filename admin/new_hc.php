@@ -32,7 +32,7 @@ $e_f_date=date("Y-m-d",strtotime(htmlspecialchars(mysqli_real_escape_string($db,
 $i_date=date("Y-m-d",strtotime(htmlspecialchars(mysqli_real_escape_string($db,$_POST['i_date']))));
 $state_=htmlspecialchars(mysqli_real_escape_string($db,$_POST['state_']));
 $locality=htmlspecialchars(mysqli_real_escape_string($db,$_POST['locality']));
-	  echo $e_f_date . $i_date;
+	  
     
 
 if(isset($name) and isset($lon) and isset($info) and isset($lat) and isset($power) and isset($phone) and isset($phone2) and  isset($state) and isset($adress)){
@@ -41,7 +41,7 @@ mysqli_query($db,"SET NAMES 'utf8'");
 				mysqli_query($db,'SET CHARACTER SET utf8'); 
 				//$sql = "INSERT INTO `tasks` (`location`, `f_userid`, `userid`, `title`, `info`, `datetime`, `state`) VALUES (GeomFromText('POINT($lon $lat)'), $f_user , $u_user, '$title', '$info', now(),  0)" ;
 				$sql="INSERT INTO `hc` ( `name`, `info`, `power`, `phone`, `phone2`, `lon`, `lat`, `adress`, `state`, `owner_name`, `owner_contact`, `project_manager`, `stakeholders`, `i_teams`, `r_t_contacts`, `medical_usage`, `building_status`, `owner_acceptance`, `resistnce_acceptance`, `readiness_status`, `building_type`, `init_budget`, `e_f_date`, `i_date`, `state_`, `locality`) VALUES ( '$name', '$info', $power, '$phone', '$phone2', $lon, $lat, '$adress', 0, '$owner_name', '$owner_contact', '$project_manager', '$stakeholders', '$i_teams', '$r_t_contacts', $medical_usage, $building_status, $owner_acceptance, $resistnce_acceptance, $readiness_status, $building_type, $init_budget, '$e_f_date', '$i_date', '$state_', '$locality')";
-        echo $sql;
+        
    
    $res= mysqli_query($db,$sql); 
     if($res){
