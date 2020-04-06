@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2020 at 09:19 PM
+-- Generation Time: Apr 05, 2020 at 02:03 PM
 -- Server version: 5.7.9
 -- PHP Version: 7.0.0
 
@@ -70,41 +70,22 @@ CREATE TABLE IF NOT EXISTS `hc` (
   `name` text NOT NULL,
   `info` text NOT NULL,
   `power` int(11) NOT NULL,
-  `phone` text,
-  `phone2` text,
+  `phone` text NOT NULL,
+  `phone2` text NOT NULL,
   `lon` double NOT NULL,
   `lat` double NOT NULL,
   `adress` text NOT NULL,
   `state` int(11) NOT NULL,
-  `owner_name` text NOT NULL,
-  `owner_contact` text NOT NULL,
-  `project_manager` text NOT NULL,
-  `stakeholders` text NOT NULL,
-  `i_teams` text NOT NULL,
-  `r_t_contacts` text NOT NULL,
-  `medical_usage` int(11) NOT NULL,
-  `building_status` int(11) NOT NULL,
-  `owner_acceptance` int(11) NOT NULL,
-  `resistnce_acceptance` int(11) NOT NULL,
-  `readiness_status` int(11) NOT NULL,
-  `building_type` int(11) NOT NULL,
-  `init_budget` bigint(20) NOT NULL,
-  `e_f_date` date DEFAULT NULL,
-  `i_date` date DEFAULT NULL,
-  `state_` text NOT NULL,
-  `locality` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `hc`
 --
 
-INSERT INTO `hc` (`id`, `name`, `info`, `power`, `phone`, `phone2`, `lon`, `lat`, `adress`, `state`, `owner_name`, `owner_contact`, `project_manager`, `stakeholders`, `i_teams`, `r_t_contacts`, `medical_usage`, `building_status`, `owner_acceptance`, `resistnce_acceptance`, `readiness_status`, `building_type`, `init_budget`, `e_f_date`, `i_date`, `state_`, `locality`) VALUES
-(3, 'Khartoum Hospital', 'Khartoum Hospital\r\n', 20, '12123232', '5121212121', 32.532508, 15.597673, 'Khartoum Hospital', 0, '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, '', '0'),
-(2, 'Universial Hospital', 'Universial Hospital', 50, '1212121', '21212121', 32.555663, 15.618842, 'Universial Hospital', 0, '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, '', '0'),
-(4, 'a', 'a', 10, '1', '1', 32.5815936298828, 15.536600797432627, 'a', 0, 'aa', '1', 'a', 'a', 'a', 'a', 0, 0, 0, 0, 0, 0, 10, '2020-04-15', '2020-04-15', 'SD01', 'SD01003'),
-(5, 'a', 'a', 10, '12', '2312', 32.52803528027343, 15.498227028456938, 'a', 0, 'a', 'a', 'a', 'a', 'a', 'a', 0, 0, 0, 0, 0, 0, 10, '2020-04-22', '2020-04-22', 'SD01', 'SD01003');
+INSERT INTO `hc` (`id`, `name`, `info`, `power`, `phone`, `phone2`, `lon`, `lat`, `adress`, `state`) VALUES
+(3, 'Khartoum Hospital', 'Khartoum Hospital\r\n', 20, '12123232', '5121212121', 32.532508, 15.597673, 'Khartoum Hospital', 0),
+(2, 'Universial Hospital', 'Universial Hospital', 50, '1212121', '21212121', 32.555663, 15.618842, 'Universial Hospital', 0);
 
 -- --------------------------------------------------------
 
