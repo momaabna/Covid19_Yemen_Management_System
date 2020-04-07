@@ -136,12 +136,12 @@ mysqli_query($db,"SET NAMES 'utf8'");
             <form method="post" enctype="multipart/form-data" accept-charset="utf-8">
   <div class="form-group col-md-12" >
     <label for="exampleFormControlInput1">Quarantine Name</label>
-    <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Quarantine Name">
+    <input type="text" required class="form-control" name="name" id="exampleFormControlInput1" placeholder="Quarantine Name">
   </div>
   
   <div class="form-group col-md-12" >
     <label for="exampleFormControlInput1">Quarantine Adress</label>
-    <input type="text" class="form-control" name="adress" id="exampleFormControlInput1" placeholder="Quarantine Adress">
+    <input type="text" class="form-control" required name="adress" id="exampleFormControlInput1" placeholder="Quarantine Adress">
   </div>
   <div class="form-group col-md-12" >
     <label for="exampleFormControlInput1">Total capacity beds</label>

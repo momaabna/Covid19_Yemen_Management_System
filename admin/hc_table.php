@@ -8,7 +8,7 @@
         <th scope="col">Readiness Status</th>
         <th scope="col">Building Status</th>
         <th scope="col">Building Type</th>
-        <th scope="col">Power</th>
+        <th scope="col">Capacity</th>
         <th scope="col">N.Cases</th>
         <th scope="col">Events</th>
     </tr>

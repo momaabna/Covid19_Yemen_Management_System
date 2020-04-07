@@ -107,9 +107,6 @@ echo "<option value=''  selected>All</option>";
 while($row = mysqli_fetch_assoc($result)) {
   $hc_n=$row['admin2Name_en'];
   $hc_id=$row['admin2Pcode'];
-
-    
- 
     echo "<option value='".$hc_id."' >".$hc_n."</option>";
 
   $c+=1;
@@ -211,6 +208,7 @@ xmlhttp.send();
           })
         })
       });
+      
 var container = document.getElementById('popup');
 
       var content = document.getElementById('popup-content');
