@@ -4,6 +4,11 @@ include('./session.php');
 include('./header.php');
 //include('./includes/setting.php');
 
+if($login_permission==2 or $login_permission==0){
+}else{
+  header("location:./index.php");
+}
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$name = htmlspecialchars(mysqli_real_escape_string($db,$_POST['name']));
       $info = htmlspecialchars(mysqli_real_escape_string($db,$_POST['info'])); 
@@ -136,7 +141,7 @@ mysqli_query($db,"SET NAMES 'utf8'");
     <label for="hc_id">Qurantine Name</label>
     <select class="form-control" name="hc_id" id="hc_id">
       <?php 
-      $q = "SELECT * FROM `hc` ";
+      $q = "SELECT * FROM `hc` WHERE readiness_status=2";
       $c=1;
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)) {

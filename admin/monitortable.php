@@ -21,7 +21,7 @@ $q =mysqli_real_escape_string($db,$_GET['q']);
  
 mysqli_query($db,"set names utf8");
 
-$q = "SELECT * FROM `notifications` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%' )";
+$q = "SELECT * FROM `notifications` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%' ) order by id ";
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)) {
    

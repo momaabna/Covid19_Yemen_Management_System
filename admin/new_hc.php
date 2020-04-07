@@ -4,6 +4,11 @@ include('./session.php');
 include('./header.php');
 //include('./includes/setting.php');
 
+if($login_permission==1 or $login_permission==0){
+}else{
+  header("location:./index.php");
+}
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$name = htmlspecialchars(mysqli_real_escape_string($db,$_POST['name']));
       $info = htmlspecialchars(mysqli_real_escape_string($db,$_POST['info'])); 

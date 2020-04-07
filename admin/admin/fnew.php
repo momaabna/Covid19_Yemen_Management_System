@@ -34,8 +34,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $name = mysqli_escape_string($db,$_POST['fname']);
     $about=mysqli_escape_string($db,$_POST['about']);
     $phone=mysqli_escape_string($db,$_POST['phone']);
+    $permission=mysqli_escape_string($db,$_POST['permission']);
     
-    $permission = 1;
+    
     $profile ="profiles/profile.jpg";
     
     $q = "INSERT INTO users (username, name,password,permission,session,online,about,phone)
@@ -132,6 +133,18 @@ SELECT '$username', '$name','$password',$permission,'$password',0,'$about','$pho
       <label for="lastname">Phone</label>
       <input type="text" name='phone' class="form-control" id="lastname" placeholder="Phone">
     </div>
+     <div class="form-group col-md-6" >
+    <label for="permission">Case Type</label>
+    <select class="form-control" name="permission" id="permission">
+      <option value='0'  selected>Admin</option>
+    <option value='1'  >Qurantine</option>
+    <option value='2'  >Cases</option>
+    
+
+
+  
+  </select>
+  </div>
     
    
   </div>
