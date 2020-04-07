@@ -82,9 +82,18 @@ if($code==0){
 $online_thresh =1;
 $q =mysqli_real_escape_string($db,$_GET['q']);
  
+ $state_ =mysqli_real_escape_string($db,$_GET['state']);
+ $loc =mysqli_real_escape_string($db,$_GET['loc']);
 mysqli_query($db,"set names utf8");
+if($state_==''){
+  $q = "SELECT * FROM `hc` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') ";
+}elseif($loc==''){
+  $q = "SELECT * FROM `hc` WHERE ((name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state_ = '$state_' ) ) ";
 
-$q = "SELECT * FROM `hc` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%' ) ";
+}else{
+  $q = "SELECT * FROM `hc` WHERE ((name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state_ = '$state_' AND locality = '$loc') ) ";
+}
+
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)) {
    
@@ -135,7 +144,7 @@ while($row = mysqli_fetch_assoc($result)) {
     <td>$building_type</td>
     <td>$power</td>
     <td>$allcount</td>
-    <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='del.php?table=hc&id=$id'><img src='../images/delete.png' width='20px' height='20px' /> </a><a href='#' onclick=\" getmodal($id)\"><img src='../images/info.png' width='20px' height='20px' /> </a></td>
+    <td><a href='#' onclick=\" getmodal($id)\"><img src='../images/info.png' width='20px' height='20px' /> </a><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='del.php?table=hc&id=$id'><img src='../images/delete.png' width='20px' height='20px' /> </a></td>
     </tr>";
     
     
