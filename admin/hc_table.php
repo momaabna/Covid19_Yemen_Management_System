@@ -86,12 +86,12 @@ $q =mysqli_real_escape_string($db,$_GET['q']);
  $loc =mysqli_real_escape_string($db,$_GET['loc']);
 mysqli_query($db,"set names utf8");
 if($state_==''){
-  $q = "SELECT * FROM `hc` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') ";
+  $q = "SELECT * FROM `hc` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%')  order by id ";
 }elseif($loc==''){
-  $q = "SELECT * FROM `hc` WHERE ((name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state_ = '$state_' ) ) ";
+  $q = "SELECT * FROM `hc` WHERE ((name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state_ = '$state_' ) ) order by id ";
 
 }else{
-  $q = "SELECT * FROM `hc` WHERE ((name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state_ = '$state_' AND locality = '$loc') ) ";
+  $q = "SELECT * FROM `hc` WHERE ((name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state_ = '$state_' AND locality = '$loc') ) order by id ";
 }
 
 $result =mysqli_query($db,$q);

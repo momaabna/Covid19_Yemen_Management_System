@@ -106,12 +106,96 @@ $r_t_contacts=$row['r_t_contacts'];$table.='<tr><th>Resistance team contacts</th
 $init_budget=$row['init_budget'];$table.='<tr><th>Initial budget in SDG</th><td>'.$init_budget.'</td></tr>';
 $e_f_date=$row['e_f_date'];$table.='<tr><th>Expected finishing date</th><td>'.$e_f_date.'</td></tr>';
 $i_date=$row['i_date'];$table.='<tr><th>Inspection date</th><td>'.$i_date.'</td></tr>';
-$medical_usage=$row['medical_usage'];$table.='<tr><th>Medical Usage</th><td>'.getmu($medical_usage).'</td></tr>';
-$building_status=$row['building_status']; $table.='<tr><th>Building Status</th><td>'.getbs($building_status).'</td></tr>';
-$owner_acceptance=$row['owner_acceptance']; $table.='<tr><th>Owner Acceptance</th><td>'.getoa($owner_acceptance).'</td></tr>';
-$resistnce_acceptance=$row['resistnce_acceptance']; $table.='<tr><th>Resistance Acceptance</th><td>'.getoa($resistnce_acceptance).'</td></tr>';
-$readiness_status=$row['readiness_status']; $table.='<tr><th>Readiness Status</th><td>'.getrs($readiness_status).'</td></tr>';
-$building_type=$row['building_type']; $table.='<tr><th>Building Type</th><td>'.getbt($building_type).'</td></tr>';
+$i=0;$h='';
+while($i<=1){
+    $h.="<a class='dropdown-item' href='./set_hc_val.php?medical_usage=".$i."&id=".$id."'>Set: ".getmu($i)."</a>";
+    $i+=1;
+};
+$h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+    
+  </button>
+  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    ".$h."
+  </div>";
+$medical_usage=$row['medical_usage'];$table.='<tr><th>Medical Usage</th><td>'.getmu($medical_usage).'</td><td>'.$h1.'</td></tr>';
+
+$i=0;$h='';
+while($i<=3){
+    $h.="<a class='dropdown-item' href='./set_hc_val.php?building_status=".$i."&id=".$id."'>Set: ".getbs($i)."</a>";
+    $i+=1;
+};
+$h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+    
+  </button>
+  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    ".$h."
+  </div>";
+
+
+
+
+$building_status=$row['building_status']; $table.='<tr><th>Building Status</th><td>'.getbs($building_status).'</td><td>'.$h1.'</td></tr>';
+
+$i=0;$h='';
+while($i<=1){
+    $h.="<a class='dropdown-item' href='./set_hc_val.php?owner_acceptance=".$i."&id=".$id."'>Set : ".getoa($i)."</a>";
+    $i+=1;
+};
+$h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+    
+  </button>
+  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    ".$h."
+  </div>";
+
+$owner_acceptance=$row['owner_acceptance']; $table.='<tr><th>Owner Acceptance</th><td>'.getoa($owner_acceptance).'</td><td>'.$h1.'</td></tr>';
+
+$i=0;$h='';
+while($i<=1){
+    $h.="<a class='dropdown-item' href='./set_hc_val.php?resistnce_acceptance=".$i."&id=".$id."'>Set: ".getoa($i)."</a>";
+    $i+=1;
+};
+$h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+    
+  </button>
+  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    ".$h."
+  </div>";
+
+
+$resistnce_acceptance=$row['resistnce_acceptance']; $table.='<tr><th>Resistance Acceptance</th><td>'.getoa($resistnce_acceptance).'</td><td>'.$h1.'</td></tr>';
+
+$i=0;$h='';
+while($i<=2){
+    $h.="<a class='dropdown-item' href='./set_hc_val.php?readiness_status=".$i."&id=".$id."'>Set: ".getrs($i)."</a>";
+    $i+=1;
+};
+$h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+    
+  </button>
+  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    ".$h."
+  </div>";
+
+
+$readiness_status=$row['readiness_status']; $table.='<tr><th>Readiness Status</th><td>'.getrs($readiness_status).'</td><td>'.$h1.' </td></tr>';
+
+$i=0;$h='';
+while($i<=3){
+    $h.="<a class='dropdown-item' href='./set_hc_val.php?building_type=".$i."&id=".$id."'>Set: ".getbt($i)."</a>";
+    $i+=1;
+};
+$h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+    
+  </button>
+  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    ".$h."
+  </div>";
+
+
+
+
+$building_type=$row['building_type']; $table.='<tr><th>Building Type</th><td>'.getbt($building_type).'</td><td>'.$h1.'</td></tr>';
 
           
 
