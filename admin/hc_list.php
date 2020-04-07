@@ -164,7 +164,7 @@ xmlhttp.open("GET", "../get_locality.php?id="+st.options[st.selectedIndex].value
 xmlhttp.send(); 
 
 }
-  
+
           var q='';
           document.getElementById("cases_list").classList.add("active");
     var ok =new ol.style.Icon({
@@ -314,7 +314,7 @@ xhr.onreadystatechange= function() {
     if (this.status!==200) return; // or whatever error handling you want
     if(this.responseText!=old){
         vectorLayer.setSource(new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases_s.php?cookie='+getCookie('cookie'),
+          url: '<?php echo $sitelink ; ?>gis/hc.php?cookie='+getCookie('cookie'),
           format: new ol.format.GeoJSON()
         }));
         document.getElementById('monitortable').innerHTML= this.responseText;
