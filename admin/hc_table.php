@@ -84,7 +84,8 @@ $q =mysqli_real_escape_string($db,$_GET['q']);
  
  $state_ =mysqli_real_escape_string($db,$_GET['state']);
  $loc =mysqli_real_escape_string($db,$_GET['loc']);
-mysqli_query($db,"set names utf8");
+                mysqli_query($db,"SET NAMES 'utf8'");
+				mysqli_query($db,'SET CHARACTER SET utf8'); 
 if($state_==''){
   $q = "SELECT * FROM `hc` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') ";
 }elseif($loc==''){
