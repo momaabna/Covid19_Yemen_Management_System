@@ -2,6 +2,10 @@
 include('../config.php');
 include('./session.php');
 include('./header.php');
+if($login_permission==2 or $login_permission==0){
+}else{
+  header("location:./index.php");
+}
 ?>
   <style>
     #monitortable{

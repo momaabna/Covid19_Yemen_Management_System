@@ -2,6 +2,11 @@
 include('../config.php');
 include('./session.php');
 include('./header.php');
+if($login_permission==1 or $login_permission==0){
+}else{
+  header("location:./index.php");
+}
+
 ?>
   <style>
     #monitortable{
@@ -166,7 +171,7 @@ xmlhttp.send();
 }
 
           var q='';
-          document.getElementById("cases_list").classList.add("active");
+          document.getElementById("hc_list").classList.add("active");
     var ok =new ol.style.Icon({
             anchor: [0.5, 1],
             src: '../images/ok20.png'
