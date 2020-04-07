@@ -221,10 +221,10 @@ mysqli_query($db,"SET NAMES 'utf8'");
   <div class="form-group col-md-6" >
     <label for="building_status">Building Status</label>
     <select class="form-control" name="building_status" id="building_status">
-      <option value='0'  selected>Under Test</option>
-      <option value='1'  >Confirmed</option>
-      <option value='2'  >Healed</option>
-      <option value='3'  >Dead</option>
+      <option value='0'  selected>Approved by the team</option>
+      <option value='1'  >Under Maintenance</option>
+      <option value='2'  >Not visited yet</option>
+      <option value='3'  >etc.</option>
   
   </select>
   </div>
@@ -261,8 +261,8 @@ mysqli_query($db,"SET NAMES 'utf8'");
     <div class="form-group col-md-6" >
     <label for="readiness_status">Readiness status </label>
     <select class="form-control" name="readiness_status" id="readiness_status">
-      <option value='0'  selected>Didnot started yet</option>
-    <option value='1'  >Working on that </option>
+      <option value='0'  selected>Not ready</option>
+    <option value='1'  >Ready needs approval </option>
     <option value='2'  >Ready </option>
     
   </select>
@@ -270,10 +270,10 @@ mysqli_query($db,"SET NAMES 'utf8'");
   <div class="form-group col-md-6" >
     <label for="building_type">Building type</label>
     <select class="form-control" name="building_type" id="building_type">
-      <option value='0'  selected>0</option>
-      <option value='1'  >1</option>
-      <option value='2'  >2</option>
-      <option value='3'  >3</option>
+      <option value='0'  selected>Hospital </option>
+      <option value='1'  >Stadium</option>
+      <option value='2'  >School Complex</option>
+      <option value='3'  >Others</option>
   
   </select>
   </div>
