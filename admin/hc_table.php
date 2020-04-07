@@ -3,11 +3,11 @@
     <tr>
       <th scope="col">#ID</th>
       <th scope="col">Name</th>
-      <th scope="col">Information</th>
+      <th scope="col">Medical Usage</th>
       <th scope="col">State</th>
-        <th scope="col">Adress</th>
-        <th scope="col">Phone</th>
-        <th scope="col">A.Phone</th>
+        <th scope="col">Readiness Status</th>
+        <th scope="col">Building Status</th>
+        <th scope="col">Building Type</th>
         <th scope="col">Power</th>
         <th scope="col">N.Cases</th>
         <th scope="col">Events</th>
@@ -24,6 +24,61 @@ $row1 = mysqli_fetch_assoc($result1);
 $name = $row1['admin1Name_en'];
   return $name;
 };
+function getlocalityname($db,$code){
+$q = "SELECT * FROM `states` WHERE admin2Pcode='$code' ";
+$result1 =mysqli_query($db,$q);
+$row1 = mysqli_fetch_assoc($result1);
+$name = $row1['admin2Name_en'];
+  return $name;
+};
+function getmu($code){
+if($code==0){
+    return'Isolation';
+}elseif($code==1){
+    return 'Self isolation';
+}
+};
+function getbs($code){
+if($code==0){
+    return'Approved by the team';
+}elseif($code==1){
+    return 'Under Maintenance';
+}elseif ($code==2) {
+    return 'Not visited yet';
+}elseif ($code==3) {
+    return 'etc.';
+}
+};
+
+function getbt($code){
+if($code==0){
+    return'Hospital';
+}elseif($code==1){
+    return 'Stadium';
+}elseif ($code==2) {
+    return 'School Complex';
+}elseif ($code==3) {
+    return 'Others';
+}
+};
+
+function getrs($code){
+if($code==0){
+    return'Not ready';
+}elseif($code==1){
+    return 'Ready needs approval';
+}elseif ($code==2) {
+    return 'Ready';
+};
+};
+function getoa($code){
+if($code==0){
+    return'False';
+}elseif($code==1){
+    return 'True';
+};
+};
+
 $online_thresh =1;
 $q =mysqli_real_escape_string($db,$_GET['q']);
  
@@ -40,6 +95,10 @@ while($row = mysqli_fetch_assoc($result)) {
           $info = $row['info'];
           $state = getstatename($db,$row['state_']);
           $power = $row['power'];
+          $medical_usage=getmu($row['medical_usage']);
+          $building_status=getbs($row['building_status']);
+          $readiness_status=getrs($row['readiness_status']); 
+          $building_type=getbt($row['building_type']);
 
           //'Site_Type' => $row['Site_Type'];
           $adress = $row['adress'];
@@ -69,11 +128,11 @@ while($row = mysqli_fetch_assoc($result)) {
     <tr>
       <th>$id</th>
       <td>$name</td>
-      <td>$info</td>
+      <td>$medical_usage</td>
       <td>$state</td>
-    <td>$adress</td>
-    <td>$phone</td>
-    <td>$phone2</td>
+    <td>$readiness_status</td>
+    <td>$building_status</td>
+    <td>$building_type</td>
     <td>$power</td>
     <td>$allcount</td>
     <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='del.php?table=hc&id=$id'><img src='../images/delete.png' width='20px' height='20px' /> </a><a href='#' onclick=\" getmodal($id)\"><img src='../images/info.png' width='20px' height='20px' /> </a></td>
