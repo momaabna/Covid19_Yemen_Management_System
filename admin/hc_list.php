@@ -57,7 +57,7 @@ include('./header.php');
     </style>
 
   <div class="row">
-    <div class="col-sm-6" style="border-style: solid;border-width: 5px;border-color:#007BFF;">
+    <div class="col-sm-8" style="border-style: solid;border-width: 5px;border-color:#007BFF;">
  
         <div  style="overflow-x:auto;height:450px;" id="monitortable">
             
@@ -76,7 +76,7 @@ include('./header.php');
         
         
     </div>
-    <div class="col-sm-6" >
+    <div class="col-sm-4" >
       <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 5px;border-color:#007BFF;height:500px;"></div>
         <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
@@ -259,7 +259,70 @@ closer.onclick = function() {
      });
 
  });
+
+function getmodal(id){
+
+var xhr= new XMLHttpRequest();
+    var cookie ;
+    cookie = getCookie('cookie');
+    
+xhr.open('GET', '<?php echo $sitelink ; ?>admin/get_q_info.php?cookie='+ cookie +'&id='+id, true);
+xhr.onreadystatechange= function() {
+    if (this.readyState!==4) return;
+    if (this.status!==200) return; // or whatever error handling you want
+    if(this.responseText!=old){
+        
+        document.getElementById('modal_body').innerHTML= this.responseText;
+
+$('#exampleModal').modal('show');
+        
+    }
+    
+};
+xhr.send();
+
+
+
+
+
+
+
+
+
+
+
+
+};
+
 </script>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Information about Qurantine</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id = "modal_body" class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
 <?php
 include('./footer.php');

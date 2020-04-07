@@ -10,13 +10,20 @@
         <th scope="col">A.Phone</th>
         <th scope="col">Power</th>
         <th scope="col">N.Cases</th>
-        <th scope="col">Location</th>
+        <th scope="col">Events</th>
     </tr>
   </thead>
   <tbody>
 <?php
 require_once('../config.php');
 include('./session2.php');
+function getstatename($db,$code){
+$q = "SELECT * FROM `states` WHERE admin1Pcode='$code' ";
+$result1 =mysqli_query($db,$q);
+$row1 = mysqli_fetch_assoc($result1);
+$name = $row1['admin1Name_en'];
+  return $name;
+};
 $online_thresh =1;
 $q =mysqli_real_escape_string($db,$_GET['q']);
  
@@ -31,7 +38,7 @@ while($row = mysqli_fetch_assoc($result)) {
             $id = $row['id'];
 			$name = $row['name'];
           $info = $row['info'];
-          $state = $row['state'];
+          $state = getstatename($db,$row['state_']);
           $power = $row['power'];
 
           //'Site_Type' => $row['Site_Type'];
@@ -69,7 +76,7 @@ while($row = mysqli_fetch_assoc($result)) {
     <td>$phone2</td>
     <td>$power</td>
     <td>$allcount</td>
-    <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='del.php?table=hc&id=$id'><img src='../images/delete.png' width='20px' height='20px' /> </a></td>
+    <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='del.php?table=hc&id=$id'><img src='../images/delete.png' width='20px' height='20px' /> </a><a href='#' onclick=\" getmodal($id)\"><img src='../images/info.png' width='20px' height='20px' /> </a></td>
     </tr>";
     
     
