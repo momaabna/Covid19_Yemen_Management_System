@@ -38,9 +38,31 @@ if($code==0){
     return 'Under Maintenance';
 }elseif ($code==2) {
     return 'Not visited yet';
-}elseif ($code) {
+}elseif ($code==3) {
     return 'etc.';
 }
+};
+
+function getbt($code){
+if($code==0){
+    return'Hospital';
+}elseif($code==1){
+    return 'Stadium';
+}elseif ($code==2) {
+    return 'School Complex';
+}elseif ($code==3) {
+    return 'Others';
+}
+};
+
+function getrs($code){
+if($code==0){
+    return'Not ready';
+}elseif($code==1){
+    return 'Ready needs approval';
+}elseif ($code==2) {
+    return 'Ready';
+};
 };
 function getoa($code){
 if($code==0){
@@ -88,8 +110,8 @@ $medical_usage=$row['medical_usage'];$table.='<tr><th>Medical Usage</th><td>'.ge
 $building_status=$row['building_status']; $table.='<tr><th>Building Status</th><td>'.getbs($building_status).'</td></tr>';
 $owner_acceptance=$row['owner_acceptance']; $table.='<tr><th>Owner Acceptance</th><td>'.getoa($owner_acceptance).'</td></tr>';
 $resistnce_acceptance=$row['resistnce_acceptance']; $table.='<tr><th>Resistance Acceptance</th><td>'.getoa($resistnce_acceptance).'</td></tr>';
-$readiness_status=$row['readiness_status'];
-$building_type=$row['building_type'];
+$readiness_status=$row['readiness_status']; $table.='<tr><th>Readiness Status</th><td>'.getrs($readiness_status).'</td></tr>';
+$building_type=$row['building_type']; $table.='<tr><th>Building Type</th><td>'.getbt($building_type).'</td></tr>';
 
           
 
