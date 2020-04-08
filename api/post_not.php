@@ -41,7 +41,7 @@ $child =htmlspecialchars(mysqli_real_escape_string($db,$_POST['child']));//Param
 
 if(isset($name) and isset($lon) and isset($info) and isset($lat) and isset($hc_name) and isset($phone) and isset($phone2) and isset($type) and isset($state) and isset($adress) and isset($nat_id)){
   
-mysqli_query($db,"SET NAMES 'utf8'");
+                mysqli_query($db,"SET NAMES 'utf8'");
 				mysqli_query($db,'SET CHARACTER SET utf8'); 
 			
 				$sql="INSERT INTO `notifications` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`,`nat_id`,`p1`,`p2`, `p3`, `p4`, `p5`, `p6`, `p7`, `p8`, `p9`, `p10`) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', 1, $state, $lon, $lat, $type, '$phone', '$phone2','$nat_id',$p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$child)";
