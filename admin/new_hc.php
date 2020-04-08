@@ -141,28 +141,28 @@ mysqli_query($db,"SET NAMES 'utf8'");
             <form method="post" enctype="multipart/form-data" accept-charset="utf-8">
   <div class="form-group col-md-12" >
     <label for="exampleFormControlInput1">Quarantine Name</label>
-    <input type="text" required class="form-control" name="name" id="exampleFormControlInput1" placeholder="Quarantine Name">
+    <input required type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Quarantine Name">
   </div>
   
   <div class="form-group col-md-12" >
-    <label for="exampleFormControlInput1">Quarantine Adress</label>
-    <input type="text" class="form-control" required name="adress" id="exampleFormControlInput1" placeholder="Quarantine Adress">
+    <label for="exampleFormControlInput1">Quarantine Address</label>
+    <input required type="text" class="form-control"  name="adress" id="exampleFormControlInput1" placeholder="Quarantine Adress">
   </div>
   <div class="form-group col-md-12" >
-    <label for="exampleFormControlInput1">Total capacity beds</label>
-    <input type="number" class="form-control" name="power" id="exampleFormControlInput1" placeholder="Quarantine Power">
+    <label for="exampleFormControlInput1">Total capacity (beds)</label>
+    <input required type="number" class="form-control" name="power" id="exampleFormControlInput1" placeholder="Quarantine Power">
   </div>
   <div class="form-group col-md-12" >
     <label for="owner_name">Owner Name</label>
-    <input type="text" class="form-control" name="owner_name" id="owner_name" placeholder="">
+    <input required type="text" class="form-control" name="owner_name" id="owner_name" placeholder="">
   </div>
   <div class="form-group col-md-12" >
     <label for="owner_contact">Owner Contact </label>
-    <input type="text" class="form-control" name="owner_contact" id="owner_contact" placeholder="">
+    <input required type="text" class="form-control" name="owner_contact" id="owner_contact" placeholder="">
   </div>
   <div class="form-group col-md-12" >
     <label for="project_manager">Project Manager</label>
-    <input type="text" class="form-control" name="project_manager" id="project_manager" placeholder="">
+    <input required type="text" class="form-control" name="project_manager" id="project_manager" placeholder="">
   </div>
  
 
@@ -202,11 +202,11 @@ mysqli_query($db,"SET NAMES 'utf8'");
   <div class=" row" >
   <div class="form-group col-md-6">
     <label for="needs">Phone</label>
-    <input class="form-control" name="phone" id="needs"  ></textarea>
+    <input required class="form-control" name="phone" id="needs"  ></textarea>
   </div>
   <div class="form-group col-md-6">
     <label for="needs">Another Phone </label>
-    <input class="form-control" name="phone2" id="needs"  ></textarea>
+    <input required class="form-control" name="phone2" id="needs"  ></textarea>
   </div>
 </div>
 </div>
@@ -294,15 +294,15 @@ mysqli_query($db,"SET NAMES 'utf8'");
    <div class=" row" >
   <div class="form-group col-md-4" >
     <label for="init_budget">Initial budget in SDG</label>
-    <input type="number" class="form-control" name="init_budget" id="init_budget" placeholder="" value="">
+    <input required type="number" class="form-control" name="init_budget" id="init_budget" placeholder="" value="">
   </div>
    <div class="form-group col-md-4" >
     <label for="e_f_date">Expected finishing date</label>
-    <input type="date" class="form-control" name="e_f_date" id="e_f_date" placeholder="" value="">
+    <input required type="date" class="form-control" name="e_f_date" id="e_f_date" placeholder="" value="">
   </div>
   <div class="form-group col-md-4" >
     <label for="i_date">Inspection date</label>
-    <input type="date" class="form-control" name="i_date" id="i_date" placeholder="" value="">
+    <input required type="date" class="form-control" name="i_date" id="i_date" placeholder="" value="">
   </div>
     </div>
     </div>
@@ -377,11 +377,11 @@ while($row = mysqli_fetch_assoc($result)) {
    <div class=" row" >
   <div class="form-group col-md-6" >
     <label for="lon">Longitude</label>
-    <input type="text" class="form-control" name="lon" id="lon" placeholder="Longitude" value="<?php echo $long; ?>">
+    <input required type="text" class="form-control" name="lon" id="lon" placeholder="Longitude" value="<?php echo $long; ?>">
   </div>
    <div class="form-group col-md-6" >
     <label for="lat">Latitude</label>
-    <input type="text" class="form-control" name="lat" id="lat" placeholder="Latitude" value="<?php echo $latg; ?>">
+    <input required type="text" class="form-control" name="lat" id="lat" placeholder="Latitude" value="<?php echo $latg; ?>">
   </div>
                 </div>
                 </div>
