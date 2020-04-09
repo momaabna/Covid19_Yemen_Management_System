@@ -56,6 +56,14 @@ echo '<li id="new_case" class="nav-item ">
       </li>';
 
 }
+if($login_permission==3 or $login_permission==0){
+echo '
+      <li id="cases_list" class="nav-item ">
+        <a class="nav-link" href="ambulance_orders.php"><img src="../images/ambulans.png" width="32px" height="32px" />Orders <span class="sr-only"></span></a>
+      </li>
+      ';
+
+}
 
 
       ?>
