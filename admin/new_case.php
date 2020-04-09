@@ -143,6 +143,7 @@ mysqli_query($db,"SET NAMES 'utf8'");
       <?php 
       $q = "SELECT * FROM `hc` WHERE readiness_status=2";
       $c=1;
+      mysqli_query($db,"SET NAMES 'utf8'");
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)) {
   $hc_n=$row['name'];
@@ -211,6 +212,7 @@ while($row = mysqli_fetch_assoc($result)) {
       <?php 
       $q = "SELECT DISTINCT admin1Pcode, admin1Name_en FROM `states` order by admin1Pcode ";
       $c=1;
+      mysqli_query($db,"SET NAMES 'utf8'");
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)) {
   $hc_n=$row['admin1Name_en'];
@@ -235,6 +237,7 @@ while($row = mysqli_fetch_assoc($result)) {
       <?php 
       $q = "SELECT admin2Pcode, admin2Name_en FROM `states` WHERE admin1Pcode='SD01' ;";
       $c=1;
+      mysqli_query($db,"SET NAMES 'utf8'");
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)) {
   $hc_n=$row['admin2Name_en'];
