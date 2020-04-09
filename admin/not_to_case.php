@@ -33,6 +33,8 @@ $row = mysqli_fetch_assoc($result);
           $p9= $row['p9'];
           $p10= $row['p10'];
           $child= $row['child'];
+          $state_= $row['state_'];
+          $locality = $row['locality'];
 
 
           if($p1==1){
@@ -70,15 +72,18 @@ $row = mysqli_fetch_assoc($result);
             mysqli_query($db,"SET NAMES 'utf8'");
 				mysqli_query($db,'SET CHARACTER SET utf8'); 
 				//$sql = "INSERT INTO `tasks` (`location`, `f_userid`, `userid`, `title`, `info`, `datetime`, `state`) VALUES (GeomFromText('POINT($lon $lat)'), $f_user , $u_user, '$title', '$info', now(),  0)" ;
-				$sql="INSERT INTO `cases` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', $hc_id, $state, $lon, $lat, $type, '$phone', '$phone2')";
-   
+				$sql="INSERT INTO `cases` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`,`state_`,`locality`) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', $hc_id, $state, $lon, $lat, $type, '$phone', '$phone2','$state','$locality')";
+   echo $sql;
    $res1= mysqli_query($db,$sql); 
-
-   $sql="DELETE FROM `notifications` WHERE id=$id_";
+   if($res1){
+    $sql="DELETE FROM `notifications` WHERE id=$id_";
    $res= mysqli_query($db,$sql); 
 
     if($res1){
         header("location:./not_list.php");
     }
+   }
+
+   
 
     ?>

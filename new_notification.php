@@ -36,6 +36,8 @@ $child =htmlspecialchars(mysqli_real_escape_string($db,$_POST['child']));
 	  $type=0;//htmlspecialchars(mysqli_real_escape_string($db,$_POST['type']));
 	  $state=-1;//htmlspecialchars(mysqli_real_escape_string($db,$_POST['state']));
     $nat_id=htmlspecialchars(mysqli_real_escape_string($db,$_POST['nat_id']));
+    $state_=htmlspecialchars(mysqli_real_escape_string($db,$_POST['state_']));
+    $locality=htmlspecialchars(mysqli_real_escape_string($db,$_POST['locality']));
 	  
     
 
@@ -44,8 +46,8 @@ if(isset($name) and isset($lon) and isset($info) and isset($lat) and isset($hc_n
 mysqli_query($db,"SET NAMES 'utf8'");
 				
 				//$sql = "INSERT INTO `tasks` (`location`, `f_userid`, `userid`, `title`, `info`, `datetime`, `state`) VALUES (GeomFromText('POINT($lon $lat)'), $f_user , $u_user, '$title', '$info', now(),  0)" ;
-				$sql="INSERT INTO `notifications` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`,`nat_id`,`p1`,`p2`, `p3`, `p4`, `p5`, `p6`, `p7`, `p8`, `p9`, `p10`,child,nat_id) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', 1, $state, $lon, $lat, $type, '$phone', '$phone2','$nat_id',$p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$child,'$nat_id')";
-   
+				$sql="INSERT INTO `notifications` ( `name`, `datetime`, `info`, `adress`, `hc_name`, `hc_id`, `state`, `lon`, `lat`, `type`, `phone`, `phone2`,`nat_id`,`p1`,`p2`, `p3`, `p4`, `p5`, `p6`, `p7`, `p8`, `p9`, `p10`,`child`,`state_`,`locality`) VALUES ( '$name', now(), '$info', '$adress', '$hc_name', 1, $state, $lon, $lat, $type, '$phone', '$phone2','$nat_id',$p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$child,'$state_','locality')";
+  
    $res= mysqli_query($db,$sql); 
     if($res){
         $success=true;
@@ -113,9 +115,26 @@ mysqli_query($db,"SET NAMES 'utf8'");
       }
     </style>
 
+
   <div class="row">
     <div class="col-sm-6" style="border-style: solid;border-width: 2px;border-color:#007BFF;">
- 
+ <?php 
+                
+                if(isset($success)){
+                    if($success){
+                       echo "<div class='alert alert-success' role='alert'>
+                            Task Sent Successfully .
+                                </div>";
+                    }else{
+                        echo "<div class='alert alert-danger' role='alert'>
+                            Failed To Send Task .
+                                </div>";
+                    }
+                }
+                
+                
+                
+                ?>
         <div  style="overflow-x:auto;height:450px;" id="form">
             <form method="post" enctype="multipart/form-data" accept-charset="utf-8">
   <div class="form-group col-md-12" >
@@ -135,6 +154,70 @@ mysqli_query($db,"SET NAMES 'utf8'");
     <label for="nat">National ID     الرقم الوطني</label>
     <input type="text" class="form-control" name="nat_id" id="nat" placeholder="National ID">
   </div>
+
+
+  <div class="col-md-12" >
+<div class=" row" >
+    <div class="form-group col-md-6" >
+    <label for="state_">State</label>
+    <select class="form-control" name="state_" id="state_" onchange="getlocality()">
+      <?php 
+      $q = "SELECT DISTINCT admin1Pcode, admin1Name_en FROM `states` order by admin1Pcode ";
+      $c=1;
+      mysqli_query($db,"SET NAMES 'utf8'");
+$result =mysqli_query($db,$q);
+while($row = mysqli_fetch_assoc($result)) {
+  $hc_n=$row['admin1Name_en'];
+  $hc_id=$row['admin1Pcode'];
+  if ($c==1){
+    echo "<option value='".$hc_id."'  selected>".$hc_n."</option>";
+  }else{
+    echo "<option value='".$hc_id."' >".$hc_n."</option>";
+
+  }
+  $c+=1;
+}
+      ?>
+
+
+  
+  </select>
+  </div>
+  <div class="form-group col-md-6" >
+    <label for="locality">Locality </label>
+    <select class="form-control" name="locality" id="locality">
+      <?php 
+      $q = "SELECT admin2Pcode, admin2Name_en FROM `states` WHERE admin1Pcode='SD01' ;";
+      $c=1;
+      mysqli_query($db,"SET NAMES 'utf8'");
+$result =mysqli_query($db,$q);
+while($row = mysqli_fetch_assoc($result)) {
+  $hc_n=$row['admin2Name_en'];
+  $hc_id=$row['admin2Pcode'];
+  if ($c==1){
+    echo "<option value='".$hc_id."'  selected>".$hc_n."</option>";
+  }else{
+    echo "<option value='".$hc_id."' >".$hc_n."</option>";
+
+  }
+  $c+=1;
+}
+      ?>
+
+  
+  </select>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
  <div class="form-group col-md-12" ><h4>Complete this Data Carfully إملأ هذه البيانات بحذر</h4> <br /> </div>
 
 
@@ -319,36 +402,20 @@ Exposure to confirmed COVID-19 cases in the last two week</label>
    <div class=" row" >
   <div class="form-group col-md-4" >
     <label for="lon">Longitude</label>
-    <input type="text" class="form-control" name="lon" id="lon" placeholder="Longitude" value="<?php echo $long; ?>">
+    <input type="text" class="form-control" name="lon" id="lon" placeholder="Longitude" value="">
   </div>
    <div class="form-group col-md-4" >
     <label for="lat">Latitude</label>
-    <input type="text" class="form-control" name="lat" id="lat" placeholder="Latitude" value="<?php echo $latg; ?>">
+    <input type="text" class="form-control" name="lat" id="lat" placeholder="Latitude" value="">
   </div>
   <div class="form-group col-md-4" >
     <label for="ch">Use My Current Location</label>
-    <input type="checkbox" onclick="getmylocation()" class="form-control" id="ch" placeholder="Latitude" value="<?php echo $latg; ?>">
+    <input type="checkbox" onclick="getmylocation()" class="form-control" id="ch" placeholder="Latitude" value="">
   </div>
                 </div>
                 </div>
    
-    <?php 
-                
-                if(isset($success)){
-                    if($success){
-                       echo "<div class='alert alert-success' role='alert'>
-                            Task Sent Successfully .
-                                </div>";
-                    }else{
-                        echo "<div class='alert alert-danger' role='alert'>
-                            Failed To Send Task .
-                                </div>";
-                    }
-                }
-                
-                
-                
-                ?>
+    
 <div class="col-md-12" >
   <button type="submit" class="btn btn-primary col-md-12">Save Case</button>
                 </div>
@@ -381,6 +448,35 @@ Exposure to confirmed COVID-19 cases in the last two week</label>
 
 
 <script>
+
+function getlocality() {
+    var loc = document.getElementById('locality');
+    var st = document.getElementById('state_');
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
+    var html_data='';
+    
+    for (var i = 0 ; i < myObj['localitis'].length; i++) {
+       var newobj=myObj['localitis'][i];
+       var code =newobj['CODE'];
+       var name = newobj['name'];
+       
+       html_data+='<option value="'+code+'">'+name+'</option>';
+    };
+  loc.innerHTML=html_data;
+
+  }
+};
+xmlhttp.open("GET", "./get_locality.php?id="+st.options[st.selectedIndex].value, true);
+xmlhttp.send(); 
+
+}
+
+
+
+
           var q='';
           document.getElementById("new_not").classList.add("active");
     var marker1 =new ol.style.Icon({
