@@ -3,12 +3,12 @@
     <tr>
       <th scope="col">#ID</th>
       <th scope="col">Name</th>
-      <th scope="col">Information</th>
-      <th scope="col">State</th>
+      
+      
         <th scope="col">Adress</th>
         <th scope="col">Phone</th>
         <th scope="col">A. Phone</th>
-        <th scope="col">Type</th>
+        
         <th scope="col">Location</th>
     </tr>
   </thead>
@@ -71,12 +71,11 @@ while($row = mysqli_fetch_assoc($result)) {
     <tr>
       <th>$id</th>
       <td>$name</td>
-      <td>$info</td>
-      <td>$state_</td>
+     
     <td>$adress</td>
     <td>$phone</td>
     <td>$phone2</td>
-    <td>$type</td>
+    
     <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='http://maps.google.com/maps?daddr=$lat,$lon'><img src='../images/on.png' width='20px' height='20px' /> </a></td>
     </tr>";
     
