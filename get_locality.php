@@ -24,7 +24,7 @@ while($row = mysqli_fetch_assoc($result)) {
 			
           'name' => $row['admin2Name_en'],
 		  'name_ar' => $row['admin2Name_ar']
-		  
+		   
             );
         
     array_push($geojson['localitis'], $feature);
