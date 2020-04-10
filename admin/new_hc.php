@@ -3,6 +3,32 @@ include('../config.php');
 include('./session.php');
 include('./header.php');
 //include('./includes/setting.php');
+function saveimage($fff){
+  $file_name = $fff ;
+  if(isset($file_name)){
+
+  }else{
+    return 'No Image';
+  }
+    
+        
+    //$scr = base64_decode($image);
+    $filename = md5(date('Y-m-d H:i:s:u'));
+    $filename .=uniqid('img');
+    $link = "qurantines_images/".$filename;
+    $link .=".jpg";
+    $img_quality = 100;
+
+    $im = imagecreatefromstring( file_get_contents( $file_name ) );
+    $im_w = imagesx($im);
+    $im_h = imagesy($im);
+    $tn = imagecreatetruecolor($im_w, $im_h);
+    imagecopyresampled ( $tn , $im, 0, 0, 0, 0, $im_w, $im_h, $im_w, $im_h );
+    imagejpeg($tn,$link,$img_quality);
+    //file_put_contents($link, $scr);
+
+        return 'user/'.$link;
+    };
 
 if($login_permission==1 or $login_permission==0){
 }else{
@@ -37,7 +63,7 @@ $e_f_date=date("Y-m-d",strtotime(htmlspecialchars(mysqli_real_escape_string($db,
 $i_date=date("Y-m-d",strtotime(htmlspecialchars(mysqli_real_escape_string($db,$_POST['i_date']))));
 $state_=htmlspecialchars(mysqli_real_escape_string($db,$_POST['state_']));
 $locality=htmlspecialchars(mysqli_real_escape_string($db,$_POST['locality']));
-	  
+	 $img = saveimage($_FILES['myFile']['tmp_name']); 
     
 
 if(isset($name) and isset($lon) and isset($info) and isset($lat) and isset($power) and isset($phone) and isset($phone2) and  isset($state) and isset($adress)){
@@ -45,7 +71,7 @@ if(isset($name) and isset($lon) and isset($info) and isset($lat) and isset($powe
 mysqli_query($db,"SET NAMES 'utf8'");
 				mysqli_query($db,'SET CHARACTER SET utf8'); 
 				//$sql = "INSERT INTO `tasks` (`location`, `f_userid`, `userid`, `title`, `info`, `datetime`, `state`) VALUES (GeomFromText('POINT($lon $lat)'), $f_user , $u_user, '$title', '$info', now(),  0)" ;
-				$sql="INSERT INTO `hc` ( `name`, `info`, `power`, `phone`, `phone2`, `lon`, `lat`, `adress`, `state`, `owner_name`, `owner_contact`, `project_manager`, `stakeholders`, `i_teams`, `r_t_contacts`, `medical_usage`, `building_status`, `owner_acceptance`, `resistnce_acceptance`, `readiness_status`, `building_type`, `init_budget`, `e_f_date`, `i_date`, `state_`, `locality`) VALUES ( '$name', '$info', $power, '$phone', '$phone2', $lon, $lat, '$adress', 0, '$owner_name', '$owner_contact', '$project_manager', '$stakeholders', '$i_teams', '$r_t_contacts', $medical_usage, $building_status, $owner_acceptance, $resistnce_acceptance, $readiness_status, $building_type, $init_budget, '$e_f_date', '$i_date', '$state_', '$locality')";
+				$sql="INSERT INTO `hc` ( `name`, `info`, `power`, `phone`, `phone2`, `lon`, `lat`, `adress`, `state`, `owner_name`, `owner_contact`, `project_manager`, `stakeholders`, `i_teams`, `r_t_contacts`, `medical_usage`, `building_status`, `owner_acceptance`, `resistnce_acceptance`, `readiness_status`, `building_type`, `init_budget`, `e_f_date`, `i_date`, `state_`, `locality`,`img`) VALUES ( '$name', '$info', $power, '$phone', '$phone2', $lon, $lat, '$adress', 0, '$owner_name', '$owner_contact', '$project_manager', '$stakeholders', '$i_teams', '$r_t_contacts', $medical_usage, $building_status, $owner_acceptance, $resistnce_acceptance, $readiness_status, $building_type, $init_budget, '$e_f_date', '$i_date', '$state_', '$locality','$img')";
         
    
    $res= mysqli_query($db,$sql); 
@@ -375,14 +401,18 @@ while($row = mysqli_fetch_assoc($result)) {
   
     <div class="col-md-12" >
    <div class=" row" >
-  <div class="form-group col-md-6" >
+  <div class="form-group col-md-3" >
     <label for="lon">Longitude</label>
     <input required type="text" class="form-control" name="lon" id="lon" placeholder="Longitude" value="<?php echo $long; ?>">
   </div>
-   <div class="form-group col-md-6" >
+   <div class="form-group col-md-3" >
     <label for="lat">Latitude</label>
     <input required type="text" class="form-control" name="lat" id="lat" placeholder="Latitude" value="<?php echo $latg; ?>">
   </div>
+  <div class="form-group col-md-6">
+      <label for="myFile">Upload Image Only .JPG</label>
+      <input type="file" name="myFile" id="myFile">
+    </div>
                 </div>
                 </div>
    

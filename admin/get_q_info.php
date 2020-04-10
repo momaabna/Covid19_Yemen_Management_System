@@ -205,9 +205,13 @@ $building_type=$row['building_type']; $table.='<tr><th>Building Type</th><td>'.g
 
         
           
+    $img = $row['img'];
     
+
+     
           
      echo $table;
+    
 
 
 
@@ -216,3 +220,13 @@ $building_type=$row['building_type']; $table.='<tr><th>Building Type</th><td>'.g
 
       </tbody>
 </table>
+<?php
+if($img=='No Image' or $img==''){
+  echo $img;
+}else{
+echo '<img src="../'.$img.'" width="auto" height="auto" style="max-width:100%;" />' ;
+
+
+}
+
+?>
