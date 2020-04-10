@@ -27,7 +27,7 @@ function saveimage($fff){
     imagejpeg($tn,$link,$img_quality);
     //file_put_contents($link, $scr);
 
-        return 'user/'.$link;
+        return 'admin/'.$link;
     };
 
 if($login_permission==1 or $login_permission==0){
