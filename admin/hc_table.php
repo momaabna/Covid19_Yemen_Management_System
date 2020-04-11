@@ -146,7 +146,7 @@ while($row = mysqli_fetch_assoc($result)) {
     <td>$building_type</td>
     <td>$power</td>
     <td>$allcount</td>
-    <td><a href='#' onclick=\" getmodal($id)\"><img src='../images/info.png' width='20px' height='20px' /> </a><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> </td>
+    <td><a href='#' onclick=\" getmodal($id)\"><img src='../images/info.png' width='20px' height='20px' /> </a> <a href='#' onclick=\" getmodal2($id)\"><img src='../images/issues.png' width='20px' height='20px' /> </a><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> </td>
     </tr>";
     
     

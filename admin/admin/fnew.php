@@ -140,6 +140,8 @@ SELECT '$username', '$name','$password',$permission,'$password',0,'$about','$pho
     <option value='1'  >Qurantine</option>
     <option value='2'  >Cases</option>
     <option value='3'  >Ambulance</option>
+    <option value='4'  >Project Manager</option>
+
     
 
 

@@ -64,6 +64,14 @@ echo '
       ';
 
 }
+if($login_permission==4){
+echo '
+      <li id="cases_list" class="nav-item ">
+        <a class="nav-link" href="hc_manage.php"><img src="../images/hospital.png" width="32px" height="32px" />Projects <span class="sr-only"></span></a>
+      </li>
+      ';
+
+}
 
 
       ?>

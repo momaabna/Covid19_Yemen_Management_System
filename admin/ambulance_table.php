@@ -8,7 +8,7 @@
         <th scope="col">Adress</th>
         <th scope="col">Phone</th>
         <th scope="col">A. Phone</th>
-        
+        <th scope="col">Bring By</th>
         <th scope="col">Location</th>
     </tr>
   </thead>
@@ -23,6 +23,13 @@ $q = "SELECT * FROM `states` WHERE admin1Pcode='$code' ";
 $result1 =mysqli_query($db,$q);
 $row1 = mysqli_fetch_assoc($result1);
 $name = $row1['admin1Name_en'];
+  return $name;
+};
+function getmanager_name($db,$code){
+$q = "SELECT * FROM `users` WHERE id='$code' ";
+$result1 =mysqli_query($db,$q);
+$row1 = mysqli_fetch_assoc($result1);
+$name = $row1['name'];
   return $name;
 };
 $online_thresh =1;
@@ -54,6 +61,7 @@ while($row = mysqli_fetch_assoc($result)) {
           $phone = $row['phone'];
            $phone2 = $row['phone2'];
            $type = $row['type'];
+           $bring_by = getmanager_name($db,$row['bring_by']);
          if($state==-1){
           $icon='ambulans.png';
 
@@ -67,6 +75,25 @@ while($row = mysqli_fetch_assoc($result)) {
             $icon='dead.png';
           };
           
+$i=0;$h='';
+
+$q = "SELECT * FROM `users` WHERE permission=3 ";
+$result1 =mysqli_query($db,$q);
+
+
+while($row1 = mysqli_fetch_assoc($result1)){
+  $i=$row1['id'];
+    $h.="<a class='dropdown-item' href='./set_case_val.php?bring_by=".$i."&id=".$id."'>Assign to : ".getmanager_name($db,$i)."</a>";
+    $i+=1;
+};
+$h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+    
+  </button>
+  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    ".$h."
+  </div>";
+
+
      echo "
     <tr>
       <th>$id</th>
@@ -75,8 +102,9 @@ while($row = mysqli_fetch_assoc($result)) {
     <td>$adress</td>
     <td>$phone</td>
     <td>$phone2</td>
+    <td>$bring_by</td>
     
-    <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='http://maps.google.com/maps?daddr=$lat,$lon'><img src='../images/on.png' width='20px' height='20px' /> </a></td>
+    <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='http://maps.google.com/maps?daddr=$lat,$lon'><img src='../images/on.png' width='20px' height='20px' /> </a> $h1 </td>
     </tr>";
     
     

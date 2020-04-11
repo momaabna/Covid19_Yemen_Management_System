@@ -17,7 +17,7 @@ if(isset($_COOKIE['cookie'])){
    $count = mysqli_num_rows($result);
    $login_session = $row['username'];
    $login_permission =$row['permission'];
-   
+   $user_id = $row['id'];
    if(!isset($_COOKIE['cookie'])){
       header("location:./login.php");
    }else{

@@ -9,7 +9,7 @@
   <tbody>
 <?php
 require_once('../config.php');
-include('./session2.php');
+include('./session.php');
 function getstatename($db,$code){
 $q = "SELECT * FROM `states` WHERE admin1Pcode='$code' ";
 $result1 =mysqli_query($db,$q);
@@ -30,20 +30,6 @@ $q = "SELECT * FROM `users` WHERE id='$code' ";
 $result1 =mysqli_query($db,$q);
 $row1 = mysqli_fetch_assoc($result1);
 $name = $row1['name'];
-  return $name;
-};
-function getlast_isuse_date($db,$code){
-$q = "SELECT * FROM `issues` WHERE quarantine_id='$code' order by id desc ; ";
-$result1 =mysqli_query($db,$q);
-$row1 = mysqli_fetch_assoc($result1);
-$name = $row1['date'];
-  return $name;
-};
-function getlast_isuse_time($db,$code){
-$q = "SELECT * FROM `issues` WHERE quarantine_id='$code' order by id desc ; ";
-$result1 =mysqli_query($db,$q);
-$row1 = mysqli_fetch_assoc($result1);
-$name = $row1['time'];
   return $name;
 };
 
@@ -219,29 +205,11 @@ $h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdo
 
 
 $building_type=$row['building_type']; $table.='<tr><th>Building Type</th><td>'.getbt($building_type).'</td><td>'.$h1.'</td></tr>';
-$i=0;$h='';
 
-$q = "SELECT * FROM `users` WHERE permission=4 ";
-$result1 =mysqli_query($db,$q);
-
-
-while($row1 = mysqli_fetch_assoc($result1)){
-  $i=$row1['id'];
-    $h.="<a class='dropdown-item' href='./set_hc_val.php?manager_id=".$i."&id=".$id."'>Assign to : ".getmanager_name($db,$i)."</a>";
-    $i+=1;
-};
-$h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-    
-  </button>
-  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-    ".$h."
-  </div>";
-
-$manager_id=$row['manager_id'];$table.='<tr><th>Project Manager</th><td>'.getmanager_name($db,$manager_id).'</td><td>'.$h1.'</td></tr>';
           
 
-$table.='<tr><th>Last Issue Date</th><td>'.getlast_isuse_date($db,$id).'</td></tr>';
-$table.='<tr><th>Last Issue Time</th><td>'.getlast_isuse_time($db,$id).'</td></tr>';            
+            
+            
 
 
         
