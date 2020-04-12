@@ -141,6 +141,7 @@ SELECT '$username', '$name','$password',$permission,'$password',0,'$about','$pho
     <option value='2'  >Cases</option>
     <option value='3'  >Ambulance</option>
     <option value='4'  >Project Manager</option>
+    <option value='5'  >Team Member</option>
 
     
 

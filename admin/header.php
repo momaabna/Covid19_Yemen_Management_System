@@ -44,6 +44,16 @@
 
 
       }
+if($login_permission==1 or $login_permission==4 or $login_permission==0){
+        echo '<li id="issues" class="nav-item ">
+        <a class="nav-link" href="issue_list.php"><img src="../images/issues.png" width="25px" height="25px" />Issues <span class="sr-only"></span></a>
+      </li>';
+
+
+      }
+
+
+
 if($login_permission==2 or $login_permission==0){
 echo '<li id="new_case" class="nav-item ">
         <a class="nav-link" href="new_case.php"><img src="../images/case.png" width="32px" height="32px" />Add Case <span class="sr-only"></span></a>
@@ -64,7 +74,7 @@ echo '
       ';
 
 }
-if($login_permission==4){
+if($login_permission==4 or $login_permission==5){
 echo '
       <li id="cases_list" class="nav-item ">
         <a class="nav-link" href="hc_manage.php"><img src="../images/hospital.png" width="32px" height="32px" />Projects <span class="sr-only"></span></a>

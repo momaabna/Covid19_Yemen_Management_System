@@ -2,7 +2,7 @@
 include('../config.php');
 include('./session.php');
 include('./header.php');
-if($login_permission==4 or $login_permission==0){
+if($login_permission==4 or $login_permission==0 or $login_permission==5){
 }else{
   header("location:./index.php");
 }
@@ -12,8 +12,12 @@ echo '<div class="list-group">
     My Projects</a>';
 
 
-
+if($login_permission==4){
 $q = "SELECT * FROM `hc` WHERE manager_id=$user_id; ";
+}elseif($login_permission==5){
+$q = "SELECT * FROM `hc` WHERE id=$q_id; ";
+}
+
 
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)){

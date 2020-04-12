@@ -2,12 +2,14 @@
 include('../config.php');
 include('./session.php');
 include('./header.php');
-if($login_permission==4 or $login_permission==0){
+$id =mysqli_real_escape_string($db,$_GET['id']);
+
+if($login_permission==4 or $login_permission==0 or ($login_permission==5 and $q_id==$id)){
 }else{
   header("location:./index.php");
 }
 
-$id =mysqli_real_escape_string($db,$_GET['id']);
+
 
 function saveimage($fff){
   $file_name = $fff ;

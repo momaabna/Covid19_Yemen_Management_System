@@ -32,11 +32,38 @@ if($login_permission!=0){
           <?php
 
     $sql = "SELECT * FROM `users`";
+    mysqli_query($db,"SET NAMES 'utf8'");
     $result =mysqli_query($db,$sql);
+
     while($row = mysqli_fetch_assoc($result)) {
         $id =$row['id'];
         $name = $row['name'];
         $username = $row['username'];
+        $permission = $row['permission'];
+        if ($permission==5){
+          $i=0;$h='';
+
+$q = "SELECT * FROM `hc`  ";
+mysqli_query($db,"SET NAMES 'utf8'");
+$result1 =mysqli_query($db,$q);
+
+
+while($row1 = mysqli_fetch_assoc($result1)){
+  $i=$row1['id'];
+  $name = $row1['name'];
+    $h.="<a class='dropdown-item' href='./admin/set_user_val.php?q_id=".$i."&id=".$id."'>Set Team Member for : ".$name."</a>";
+    $i+=1;
+};
+$h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+    
+  </button>
+  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    ".$h."
+  </div>";
+
+        }else{
+          $h1='';
+        }
         
         
         echo "
@@ -49,6 +76,7 @@ if($login_permission!=0){
       
         <td><a href='admin/fedit.php?user=$id'>Edit</a></td>
         <td><a href='admin/fdel.php?user=$id' >Delete</a></td>
+        <td>$h1</td>
 
     </tr>
         

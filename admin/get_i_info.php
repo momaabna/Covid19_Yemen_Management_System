@@ -15,7 +15,7 @@ $name = $row1['name'];
 $id =mysqli_real_escape_string($db,$_GET['id']);
 mysqli_query($db,"set names utf8");
 
-$q = "SELECT * FROM `issues` WHERE quarantine_id=$id;";
+$q = "SELECT * FROM `issues` WHERE quarantine_id=$id order by id desc limit 0,10  ;";
 $result =mysqli_query($db,$q);
 echo '<div class="accordion" id="accordionExample">';
 while($row = mysqli_fetch_assoc($result)){
