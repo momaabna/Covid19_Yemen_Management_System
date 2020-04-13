@@ -35,7 +35,6 @@ if ($login_permission == 1 or $login_permission == 0) {
   header("location:./index.php");
 }
 
-<<<<<<< HEAD
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$name = htmlspecialchars(mysqli_real_escape_string($db,$_POST['name']));
       $info = htmlspecialchars(mysqli_real_escape_string($db,$_POST['info'])); 
@@ -80,52 +79,6 @@ mysqli_query($db,"SET NAMES 'utf8'");
         $success=true;
     }else{
         $success=false;
-=======
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $name = htmlspecialchars(mysqli_real_escape_string($db, $_POST['name']));
-  $info = htmlspecialchars(mysqli_real_escape_string($db, $_POST['info']));
-  $lon = htmlspecialchars(mysqli_real_escape_string($db, $_POST['lon']));
-  $lat = htmlspecialchars(mysqli_real_escape_string($db, $_POST['lat']));
-  $adress = htmlspecialchars(mysqli_real_escape_string($db, $_POST['adress']));
-  $power = htmlspecialchars(mysqli_real_escape_string($db, $_POST['power']));
-  $phone = htmlspecialchars(mysqli_real_escape_string($db, $_POST['phone']));
-  $phone2 = htmlspecialchars(mysqli_real_escape_string($db, $_POST['phone2']));
-  $state = 0;
-
-  $owner_name = htmlspecialchars(mysqli_real_escape_string($db, $_POST['owner_name']));
-  $owner_contact = htmlspecialchars(mysqli_real_escape_string($db, $_POST['owner_contact']));
-  $project_manager = htmlspecialchars(mysqli_real_escape_string($db, $_POST['project_manager']));
-  $stakeholders = htmlspecialchars(mysqli_real_escape_string($db, $_POST['stakeholders']));
-  $i_teams = htmlspecialchars(mysqli_real_escape_string($db, $_POST['i_teams']));
-  $r_t_contacts = htmlspecialchars(mysqli_real_escape_string($db, $_POST['r_t_contacts']));
-  $medical_usage = htmlspecialchars(mysqli_real_escape_string($db, $_POST['medical_usage']));
-  $building_status = htmlspecialchars(mysqli_real_escape_string($db, $_POST['building_status']));
-  $owner_acceptance = htmlspecialchars(mysqli_real_escape_string($db, $_POST['owner_acceptance']));
-  $resistnce_acceptance = htmlspecialchars(mysqli_real_escape_string($db, $_POST['resistnce_acceptance']));
-  $readiness_status = htmlspecialchars(mysqli_real_escape_string($db, $_POST['readiness_status']));
-  $building_type = htmlspecialchars(mysqli_real_escape_string($db, $_POST['building_type']));
-  $init_budget = htmlspecialchars(mysqli_real_escape_string($db, $_POST['init_budget']));
-  $e_f_date = date("Y-m-d", strtotime(htmlspecialchars(mysqli_real_escape_string($db, $_POST['e_f_date']))));
-  $i_date = date("Y-m-d", strtotime(htmlspecialchars(mysqli_real_escape_string($db, $_POST['i_date']))));
-  $state_ = htmlspecialchars(mysqli_real_escape_string($db, $_POST['state_']));
-  $locality = htmlspecialchars(mysqli_real_escape_string($db, $_POST['locality']));
-
-
-
-  if (isset($name) and isset($lon) and isset($info) and isset($lat) and isset($power) and isset($phone) and isset($phone2) and  isset($state) and isset($adress)) {
-
-    mysqli_query($db, "SET NAMES 'utf8'");
-    mysqli_query($db, 'SET CHARACTER SET utf8');
-    //$sql = "INSERT INTO `tasks` (`location`, `f_userid`, `userid`, `title`, `info`, `datetime`, `state`) VALUES (GeomFromText('POINT($lon $lat)'), $f_user , $u_user, '$title', '$info', now(),  0)" ;
-    $sql = "INSERT INTO `hc` ( `name`, `info`, `power`, `phone`, `phone2`, `lon`, `lat`, `adress`, `state`, `owner_name`, `owner_contact`, `project_manager`, `stakeholders`, `i_teams`, `r_t_contacts`, `medical_usage`, `building_status`, `owner_acceptance`, `resistnce_acceptance`, `readiness_status`, `building_type`, `init_budget`, `e_f_date`, `i_date`, `state_`, `locality`) VALUES ( '$name', '$info', $power, '$phone', '$phone2', $lon, $lat, '$adress', 0, '$owner_name', '$owner_contact', '$project_manager', '$stakeholders', '$i_teams', '$r_t_contacts', $medical_usage, $building_status, $owner_acceptance, $resistnce_acceptance, $readiness_status, $building_type, $init_budget, '$e_f_date', '$i_date', '$state_', '$locality')";
-
-
-    $res = mysqli_query($db, $sql);
-    if ($res) {
-      $success = true;
-    } else {
-      $success = false;
->>>>>>> e12d6456d12a2bb9d6a20408e92ed6590cddd622
     }
   };
 }
@@ -502,7 +455,6 @@ if (isset($_GET['user'])) {
 
 
 
-<<<<<<< HEAD
 <!--States Loclitis End -->
   
     <div class="col-md-12" >
@@ -565,8 +517,6 @@ if (isset($_GET['user'])) {
     
   </div>
     
-=======
->>>>>>> e12d6456d12a2bb9d6a20408e92ed6590cddd622
 
 
   <script>
