@@ -63,8 +63,6 @@
       ';
         }
 
-<<<<<<< HEAD
-}
 if($login_permission==4){
 echo '
       <li id="cases_list" class="nav-item ">
@@ -73,8 +71,6 @@ echo '
       ';
 
 }
-=======
->>>>>>> e12d6456d12a2bb9d6a20408e92ed6590cddd622
 
         ?>
 
