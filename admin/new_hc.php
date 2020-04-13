@@ -35,7 +35,7 @@ if ($login_permission == 1 or $login_permission == 0) {
   header("location:./index.php");
 }
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$name = htmlspecialchars(mysqli_real_escape_string($db,$_POST['name']));
       $info = htmlspecialchars(mysqli_real_escape_string($db,$_POST['info'])); 
@@ -64,7 +64,11 @@ $e_f_date=date("Y-m-d",strtotime(htmlspecialchars(mysqli_real_escape_string($db,
 $i_date=date("Y-m-d",strtotime(htmlspecialchars(mysqli_real_escape_string($db,$_POST['i_date']))));
 $state_=htmlspecialchars(mysqli_real_escape_string($db,$_POST['state_']));
 $locality=htmlspecialchars(mysqli_real_escape_string($db,$_POST['locality']));
-	 $img = saveimage($_FILES['myFile']['tmp_name']); 
+	 if(isset($_POST['myFile'])){
+  $img = saveimage($_FILES['myFile']['tmp_name']); 
+}else{
+  $img='No image';
+}
     
 
 if(isset($name) and isset($lon) and isset($info) and isset($lat) and isset($power) and isset($phone) and isset($phone2) and  isset($state) and isset($adress)){
@@ -80,52 +84,7 @@ mysqli_query($db,"SET NAMES 'utf8'");
         $success=true;
     }else{
         $success=false;
-=======
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $name = htmlspecialchars(mysqli_real_escape_string($db, $_POST['name']));
-  $info = htmlspecialchars(mysqli_real_escape_string($db, $_POST['info']));
-  $lon = htmlspecialchars(mysqli_real_escape_string($db, $_POST['lon']));
-  $lat = htmlspecialchars(mysqli_real_escape_string($db, $_POST['lat']));
-  $adress = htmlspecialchars(mysqli_real_escape_string($db, $_POST['adress']));
-  $power = htmlspecialchars(mysqli_real_escape_string($db, $_POST['power']));
-  $phone = htmlspecialchars(mysqli_real_escape_string($db, $_POST['phone']));
-  $phone2 = htmlspecialchars(mysqli_real_escape_string($db, $_POST['phone2']));
-  $state = 0;
 
-  $owner_name = htmlspecialchars(mysqli_real_escape_string($db, $_POST['owner_name']));
-  $owner_contact = htmlspecialchars(mysqli_real_escape_string($db, $_POST['owner_contact']));
-  $project_manager = htmlspecialchars(mysqli_real_escape_string($db, $_POST['project_manager']));
-  $stakeholders = htmlspecialchars(mysqli_real_escape_string($db, $_POST['stakeholders']));
-  $i_teams = htmlspecialchars(mysqli_real_escape_string($db, $_POST['i_teams']));
-  $r_t_contacts = htmlspecialchars(mysqli_real_escape_string($db, $_POST['r_t_contacts']));
-  $medical_usage = htmlspecialchars(mysqli_real_escape_string($db, $_POST['medical_usage']));
-  $building_status = htmlspecialchars(mysqli_real_escape_string($db, $_POST['building_status']));
-  $owner_acceptance = htmlspecialchars(mysqli_real_escape_string($db, $_POST['owner_acceptance']));
-  $resistnce_acceptance = htmlspecialchars(mysqli_real_escape_string($db, $_POST['resistnce_acceptance']));
-  $readiness_status = htmlspecialchars(mysqli_real_escape_string($db, $_POST['readiness_status']));
-  $building_type = htmlspecialchars(mysqli_real_escape_string($db, $_POST['building_type']));
-  $init_budget = htmlspecialchars(mysqli_real_escape_string($db, $_POST['init_budget']));
-  $e_f_date = date("Y-m-d", strtotime(htmlspecialchars(mysqli_real_escape_string($db, $_POST['e_f_date']))));
-  $i_date = date("Y-m-d", strtotime(htmlspecialchars(mysqli_real_escape_string($db, $_POST['i_date']))));
-  $state_ = htmlspecialchars(mysqli_real_escape_string($db, $_POST['state_']));
-  $locality = htmlspecialchars(mysqli_real_escape_string($db, $_POST['locality']));
-
-
-
-  if (isset($name) and isset($lon) and isset($info) and isset($lat) and isset($power) and isset($phone) and isset($phone2) and  isset($state) and isset($adress)) {
-
-    mysqli_query($db, "SET NAMES 'utf8'");
-    mysqli_query($db, 'SET CHARACTER SET utf8');
-    //$sql = "INSERT INTO `tasks` (`location`, `f_userid`, `userid`, `title`, `info`, `datetime`, `state`) VALUES (GeomFromText('POINT($lon $lat)'), $f_user , $u_user, '$title', '$info', now(),  0)" ;
-    $sql = "INSERT INTO `hc` ( `name`, `info`, `power`, `phone`, `phone2`, `lon`, `lat`, `adress`, `state`, `owner_name`, `owner_contact`, `project_manager`, `stakeholders`, `i_teams`, `r_t_contacts`, `medical_usage`, `building_status`, `owner_acceptance`, `resistnce_acceptance`, `readiness_status`, `building_type`, `init_budget`, `e_f_date`, `i_date`, `state_`, `locality`) VALUES ( '$name', '$info', $power, '$phone', '$phone2', $lon, $lat, '$adress', 0, '$owner_name', '$owner_contact', '$project_manager', '$stakeholders', '$i_teams', '$r_t_contacts', $medical_usage, $building_status, $owner_acceptance, $resistnce_acceptance, $readiness_status, $building_type, $init_budget, '$e_f_date', '$i_date', '$state_', '$locality')";
-
-
-    $res = mysqli_query($db, $sql);
-    if ($res) {
-      $success = true;
-    } else {
-      $success = false;
->>>>>>> e12d6456d12a2bb9d6a20408e92ed6590cddd622
     }
   };
 }
@@ -443,69 +402,7 @@ if (isset($_GET['user'])) {
 
         <!--States Loclitis End -->
 
-        <div class="col-md-12">
-          <div class=" row">
-            <div class="form-group col-md-6">
-              <label for="lon">Longitude</label>
-              <input required type="text" class="form-control" name="lon" id="lon" placeholder="Longitude" value="<?php echo $long; ?>">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="lat">Latitude</label>
-              <input required type="text" class="form-control" name="lat" id="lat" placeholder="Latitude" value="<?php echo $latg; ?>">
-            </div>
-          </div>
-        </div>
-
-        <?php
-
-        if (isset($success)) {
-          if ($success) {
-            echo "<div class='alert alert-success' role='alert'>
-                            Task Sent Successfully .
-                                </div>";
-          } else {
-            echo "<div class='alert alert-danger' role='alert'>
-                            Failed To Send Task .
-                                </div>";
-          }
-        }
-
-
-
-        ?>
-        <div class="col-md-12">
-          <button type="submit" class="btn btn-primary col-md-12">Save Case</button>
-        </div>
-      </form>
-
-
-
-
-    </div>
-
-  </div>
-
-
-
-
-  <div class="col-sm-6">
-    <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 2px;border-color:#007BFF;height:500px;"></div>
-    <div id="popup" class="ol-popup">
-      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-      <div id="popup-content"></div>
-    </div>
-
-
-
-  </div>
-
-
-
-
-<<<<<<< HEAD
-<!--States Loclitis End -->
-  
-    <div class="col-md-12" >
+     <div class="col-md-12" >
    <div class=" row" >
   <div class="form-group col-md-3" >
     <label for="lon">Longitude</label>
@@ -550,23 +447,25 @@ if (isset($_GET['user'])) {
 </div>
 
        </div>
-        
-        
-    
 
-    <div class="col-sm-6" >
-      <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 2px;border-color:#007BFF;height:500px;"></div>
-        <div id="popup" class="ol-popup">
+
+
+
+  <div class="col-sm-6">
+    <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 2px;border-color:#007BFF;height:500px;"></div>
+    <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
     </div>
-      
-      
-    
+
+
+
   </div>
-    
-=======
->>>>>>> e12d6456d12a2bb9d6a20408e92ed6590cddd622
+
+
+
+
+
 
 
   <script>

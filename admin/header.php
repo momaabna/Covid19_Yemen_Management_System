@@ -43,7 +43,7 @@
        <li id="hc_list" class="nav-item ">
         <a class="nav-link" href="hc_list.php"><img src="../images/hospital.png" width="25px" height="25px" />Quarantines <span class="sr-only"></span></a>
       </li>';
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 
       }
@@ -57,13 +57,13 @@ if($login_permission==1 or $login_permission==4 or $login_permission==0){
 
 
 
-if($login_permission==2 or $login_permission==0){
-echo '<li id="new_case" class="nav-item ">
-=======
-        }
+//if($login_permission==2 or $login_permission==0){
+//echo '<li id="new_case" class="nav-item ">
+//=======
+//        }
         if ($login_permission == 2 or $login_permission == 0) {
           echo '<li id="new_case" class="nav-item ">
->>>>>>> d8d6b5ac9e18e6a2bce87b4fad50acc380d37657
+
         <a class="nav-link" href="new_case.php"><img src="../images/case.png" width="32px" height="32px" />Add Case <span class="sr-only"></span></a>
       </li>
       <li id="cases_list" class="nav-item ">
@@ -81,12 +81,12 @@ echo '<li id="new_case" class="nav-item ">
       ';
         }
 
-<<<<<<< HEAD
-}
+//<<<<<<< HEAD
+//}
 if($login_permission==4 or $login_permission==5){
-=======
-if($login_permission==4){
->>>>>>> d8d6b5ac9e18e6a2bce87b4fad50acc380d37657
+//=======
+//if($login_permission==4){
+//>>>>>>> d8d6b5ac9e18e6a2bce87b4fad50acc380d37657
 echo '
       <li id="cases_list" class="nav-item ">
         <a class="nav-link" href="hc_manage.php"><img src="../images/hospital.png" width="32px" height="32px" />Projects <span class="sr-only"></span></a>
