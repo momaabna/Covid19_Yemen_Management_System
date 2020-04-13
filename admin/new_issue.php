@@ -38,12 +38,28 @@ return 'No Image';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 $info = htmlspecialchars(mysqli_real_escape_string($db,$_POST['description'])); 
-$img = saveimage($_FILES['myFile']['tmp_name']); 
+if(isset($_POST['myFile'])){
+  $img = saveimage($_FILES['myFile']['tmp_name']); 
+}else{
+  $img='No image';
+}
+if(isset($_POST['due_date'])){
+  $due_date =date("Y-m-d",strtotime(htmlspecialchars(mysqli_real_escape_string($db,$_POST['due_date'])))); 
+}else{
+  
+}
+
 if(isset($info)){
 
 
 	mysqli_query($db,"SET NAMES 'utf8'");
-	$sql = "INSERT INTO `issues` ( `quarantine_id`, `issue_description`, `img`, `made_by`, `date`, `time`) VALUES ( $id, '$info', '$img', '$user_id', now(), now())";
+  if(isset($_POST['due_date'])){
+  $due_date =date("Y-m-d",strtotime(htmlspecialchars(mysqli_real_escape_string($db,$_POST['due_date'])))); 
+  $sql = "INSERT INTO `issues` ( `quarantine_id`, `issue_description`, `img`, `made_by`, `date`, `time`,`due_date`) VALUES ( $id, '$info', '$img', '$user_id', now(), now(),'$due_date')";
+}else{
+  $sql = "INSERT INTO `issues` ( `quarantine_id`, `issue_description`, `img`, `made_by`, `date`, `time`) VALUES ( $id, '$info', '$img', '$user_id', now(), now())";
+}
+	
 	$res= mysqli_query($db,$sql); 
     if($res){
         $success=true;
@@ -104,9 +120,19 @@ $name= $row['name'];
 </div></div>
 <div class="form-group col-md-12">
   <div class=" row" >
-<div class="form-group col-md-12">
-      <label for="myFile">Upload Image Only .JPG</label>
-      <input type="file" name="myFile" id="myFile">
+    <div class="form-group col-md-2">
+      <label for="check1">Upload Image</label>
+      <input type="checkbox" name="check1" id="check1" onchange="change()">
+    </div>
+<div id ="Upload" class="form-group col-md-4">
+      
+    </div>
+    <div class="form-group col-md-2">
+      <label for="check2">Add Due Date</label>
+      <input type="checkbox" name="check2" id="check2" onchange="change()">
+    </div>
+    <div id="due_date" class="form-group col-md-4">
+      
     </div>
 </div></div>
 
@@ -116,6 +142,30 @@ $name= $row['name'];
 
 </form>
 </div>
+
+
+<script type="text/javascript">
+  function change(){
+ch1 = document.getElementById('check1');
+ch2 = document.getElementById('check2');
+if(ch1.checked){
+document.getElementById('Upload').innerHTML='<label for="myFile">Upload Image Only .JPG</label><input type="file" name="myFile" id="myFile">';
+}else{
+  document.getElementById('Upload').innerHTML='';
+}
+if(ch2.checked){
+document.getElementById('due_date').innerHTML='<label for="date">Due Date</label><input type="date" name="due_date" id="date">';
+}else{
+  document.getElementById('due_date').innerHTML='';
+}
+
+
+  }
+
+
+
+
+</script>
 
 <?php
 include('./footer.php');

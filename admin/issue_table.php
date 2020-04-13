@@ -7,6 +7,7 @@
       <th scope="col">Quarantine</th>
       <th scope="col">Date</th>
       <th scope="col">Time</th>
+      <th scope="col">Due Date</th>
 
         
         <th scope="col">Events</th>
@@ -111,6 +112,7 @@ while($row = mysqli_fetch_assoc($result)) {
           $date = $row['date'];
           $time =$row['time'];
           $quarantine =getquarantine_name($db,$row['quarantine_id']);
+          $due_date= $row['due_date'];
           
 
            
@@ -131,6 +133,7 @@ while($row = mysqli_fetch_assoc($result)) {
       <td>$quarantine</td>
     <td>$date</td>
     <td>$time</td>
+    <td>$due_date</td>
     
     <td> <a href='#' onclick=\" getmodal2($id)\"><img src='../images/issues.png' width='20px' height='20px' /> </a> </td>
     </tr>";

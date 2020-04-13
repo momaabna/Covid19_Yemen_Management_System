@@ -88,6 +88,7 @@ if($login_permission==1 or $login_permission==0){
       
       <button class="btn btn-outline-primary " onclick='userslist();'>Search</button>
     </div>
+    
        </div>
         
         
