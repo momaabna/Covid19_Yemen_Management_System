@@ -36,7 +36,7 @@
         </li>
 
         <?php
-        if ($login_permission == 1 or $login_permission == -100) {
+        if ($login_permission == 1 or $login_permission == 0) {
           echo '<li id="new_hc" class="nav-item ">
         <a class="nav-link" href="new_hc.php"><img src="../images/add.png" width="25px" height="25px" />Add Quarantine <span class="sr-only"></span></a>
       </li>
@@ -44,7 +44,7 @@
         <a class="nav-link" href="hc_list.php"><img src="../images/hospital.png" width="25px" height="25px" />Quarantines <span class="sr-only"></span></a>
       </li>';
         }
-        if ($login_permission == 2 or $login_permission == -100) {
+        if ($login_permission == 2 or $login_permission == 0) {
           echo '<li id="new_case" class="nav-item ">
         <a class="nav-link" href="new_case.php"><img src="../images/case.png" width="32px" height="32px" />Add Case <span class="sr-only"></span></a>
       </li>
@@ -55,7 +55,7 @@
         <a class="nav-link" href="not_list.php"><img src="../images/users.png" width="32px" height="32px" />Notifications <span class="sr-only"></span></a>
       </li>';
         }
-        if ($login_permission == 3 or $login_permission == -100) {
+        if ($login_permission == 3 or $login_permission == 0) {
           echo '
       <li id="cases_list" class="nav-item ">
         <a class="nav-link" href="ambulance_orders.php"><img src="../images/ambulans.png" width="32px" height="32px" />Orders <span class="sr-only"></span></a>
@@ -78,7 +78,7 @@ echo '
 
 
         <?php
-        if ($login_permission == -100) {
+        if ($login_permission == 0) {
         ?>
           <li id="users" class="nav-item ">
             <a class="nav-link" href="users.php"><img src='../images/lock.png' width='32px' height='32px' />Users <span class="sr-only"></span></a>
