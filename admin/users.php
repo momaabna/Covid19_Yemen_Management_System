@@ -12,11 +12,11 @@ if($login_permission!=0){
         <div class="col-md-6">
             <div class="container">
         <!-- Field Users Table-->
-<div class="row">
+<div class="row" style="color: #fbb92f;background-color:#535152">
     <h5>Users Configuration <a href='./admin/fnew.php'>Click Here to Add New  User</a></h5>
     
     </div>
-        <table class="table table-hover table-sm">
+        <table class="table table-hover table-sm" style="">
   <thead>
     <tr>
       <th scope="col">#ID</th>

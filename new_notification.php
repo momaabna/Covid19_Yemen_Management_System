@@ -116,8 +116,8 @@ mysqli_query($db,"SET NAMES 'utf8'");
     </style>
 
 
-  <div class="row">
-    <div class="col-sm-6" style="border-style: solid;border-width: 2px;border-color:#007BFF;">
+  <div class="row" style="background-color:#535152;color:#fbb92f"> 
+    <div class="col-sm-6" style="border-style: solid;border-width: 2px;border-color:#fbb92f;">
  <?php 
                 
                 if(isset($success)){
@@ -417,7 +417,7 @@ Exposure to confirmed COVID-19 cases in the last two week</label>
    
     
 <div class="col-md-12" >
-  <button type="submit" class="btn btn-primary col-md-12">Save Case</button>
+  <button type="submit" class="btn col-md-12" style='background-color:#535152;color:#fbb92f;border-color:#fbb92f '>Save Case</button>
                 </div>
 </form>
             
@@ -432,7 +432,7 @@ Exposure to confirmed COVID-19 cases in the last two week</label>
     
 
     <div class="col-sm-6" >
-      <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 2px;border-color:#007BFF;height:500px;"></div>
+      <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 2px;border-color:#fbb92f;height:500px;"></div>
         <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
@@ -549,7 +549,7 @@ var container = document.getElementById('popup');
           overlays: [overlay],
         target: 'map',
         view: new ol.View({
-          center: ol.proj.fromLonLat(<?php echo "[ 32.547948, 15.609359]"; ?>, 'EPSG:3857'),
+          center: ol.proj.fromLonLat(<?php echo "[ 44.38571655468752, 15.450580710995894]"; ?>, 'EPSG:3857'),
           zoom: <?php echo 10; ?>
         }),
           controls: ol.control.defaults().extend([

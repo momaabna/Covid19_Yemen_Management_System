@@ -60,28 +60,28 @@ if($login_permission==2 or $login_permission==0){
       }
     </style>
 
-  <div class="row">
-    <div class="col-sm-6" style="border-style: solid;border-width: 5px;border-color:#007BFF;">
+  <div class="row" style="background-color:#535152;">
+    <div class="col-sm-6" style="border-style: solid;border-width: 5px;border-color:#fbb92f;">
  
         <div  style="overflow-x:auto;height:450px;" id="monitortable">
             
-           <a href="#" class="list-group-item list-group-item-action active">
-   Loading Sites ...
+           <a href="#" class="list-group-item list-group-item-action active" style="background-color:#535152;border-color:#fbb92f;color:#fbb92f">
+   Loading Notifications  ...
   </a>
 
   
 </div>
-<div style="border-style: solid;border-width: 1px;border-color:#007BFF;">
+<div style="border-style: solid;border-width: 1px;border-color:#fbb92f;">
        <div class="form-inline my-2 my-lg-0">
       <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onchange='userslist();'>
-      <button class="btn btn-outline-success my-2 my-sm-0" onclick='userslist();'>Search</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" onclick='userslist();' style="background-color:#535152;border-color:#fbb92f;color:#fbb92f">Search</button>
     </div>
        </div>
         
         
     </div>
     <div class="col-sm-6" >
-      <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 5px;border-color:#007BFF;height:500px;"></div>
+      <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 5px;border-color:#fbb92f;height:500px;"></div>
         <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>

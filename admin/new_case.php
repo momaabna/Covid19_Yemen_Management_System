@@ -120,7 +120,7 @@ mysqli_query($db,"SET NAMES 'utf8'");
     </style>
 
   <div class="row">
-    <div class="col-sm-6" style="border-style: solid;border-width: 2px;border-color:#007BFF;">
+    <div class="col-sm-6" style="border-style: solid;border-width: 2px;border-color:#fbb92f;;">
  
         <div  style="overflow-x:auto;height:450px;" id="form">
             <form method="post" enctype="multipart/form-data" accept-charset="utf-8">
@@ -289,7 +289,7 @@ while($row = mysqli_fetch_assoc($result)) {
                 
                 ?>
 <div class="col-md-12" >
-  <button type="submit" class="btn btn-primary col-md-12">Save Case</button>
+  <button type="submit" class="btn btn-primary col-md-12" style="border-color:#fbb92f;color: #fbb92f;background-color:#535152;">Save Case</button>
                 </div>
 </form>
             
@@ -304,7 +304,7 @@ while($row = mysqli_fetch_assoc($result)) {
     
 
     <div class="col-sm-6" >
-      <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 2px;border-color:#007BFF;height:500px;"></div>
+      <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 2px;border-color:#fbb92f;height:500px;"></div>
         <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>

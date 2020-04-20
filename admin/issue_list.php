@@ -69,38 +69,38 @@ if($login_permission==1 or $login_permission==0){
     </style>
 
   <div class="row">
-    <div class="col-sm-6" style="border-style: solid;border-width: 5px;border-color:#007BFF;">
+    <div class="col-sm-6" style="border-style: solid;border-width: 5px;border-color:#fbb92f;">
  
         <div  style="overflow-x:auto;height:450px;" id="monitortable">
             
-           <a href="#" class="list-group-item list-group-item-action active">
+           <a href="#" class="list-group-item list-group-item-action active" style="background-color:#535152;border-color:#fbb92f;color:#fbb92f">
    Loading Issues ...
   </a>
 
   
 </div>
-<div style="border-style: solid;border-width: 1px;border-color:#007BFF;">
+<div style="border-style: solid;border-width: 1px;border-color:#fbb92f;">
        <div class="form-row  ">
         <div class="form-group col-auto" >
         <!--<label for="search">Search</label> -->
       <input id="search" class="form-control " type="search" placeholder="Search" aria-label="Search" onchange='userslist();' >
     </div>
       
-      <button class="btn btn-outline-primary " onclick='userslist();'>Search</button>
+      <button class="btn btn-outline-primary " onclick='userslist();' style="background-color:#535152;border-color:#fbb92f;color:#fbb92f">Search</button>
     </div>
     
        </div>
         
         
     </div>
-    <div class="col-sm-6" style="border-style: solid;border-width: 5px;border-color:#007BFF;" >
+    <div class="col-sm-6" style="border-style: solid;border-width: 5px;border-color:#fbb92f;" >
       <div class="container" id='container'>
         <div class="modal" id="mymodal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">'.$made_by.'</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background-color:#535152;;border-color:#fbb92f;">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
