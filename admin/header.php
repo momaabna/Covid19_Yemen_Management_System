@@ -47,7 +47,7 @@
 
 
       }
-if($login_permission==1 or $login_permission==4 or $login_permission==0){
+/* if($login_permission==1 or $login_permission==4 or $login_permission==0){
         echo '<li id="issues" class="nav-item ">
         <a class="nav-link" href="issue_list.php" style="color:#fbb92f"><img src="../images/issues.png" width="25px" height="25px" />Issues <span class="sr-only"></span></a>
       </li>';
@@ -55,7 +55,7 @@ if($login_permission==1 or $login_permission==4 or $login_permission==0){
 
       }
 
-
+*/
 
 
         if ($login_permission == 2 or $login_permission == 0) {

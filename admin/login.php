@@ -166,7 +166,7 @@ if (!empty($_POST)) {
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
           <div class="card card-signin my-5" style="background-color: #535152;border-color:#fbb92f;">
             <div class="card-body">
-              <h5 class="card-title text-center">Sign In</h5>
+              <h5 class="card-title text-center"></h5>
               <img class="rounded mx-auto d-block" src="../images/icon.png" width="200px" height="200px" />
               <form class="form-signin" method='POST'>
                 <div class="form-label-group">

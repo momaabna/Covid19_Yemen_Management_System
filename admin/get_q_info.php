@@ -240,7 +240,7 @@ $h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdo
 $manager_id=$row['manager_id'];$table.='<tr><th>Project Manager</th><td>'.getmanager_name($db,$manager_id).'</td><td>'.$h1.'</td></tr>';
           
 
-$table.='<tr><th>Last Issue Date</th><td>'.getlast_isuse_date($db,$id).'</td><td><a class="btn btn-primary" href="new_issue.php?id='.$id.'" role="button">Add issue</a></td></tr>';
+//$table.='<tr><th>Last Issue Date</th><td>'.getlast_isuse_date($db,$id).'</td><td><a class="btn btn-primary" href="new_issue.php?id='.$id.'" role="button">Add issue</a></td></tr>';
 $table.='<tr><th>Last Issue Time</th><td>'.getlast_isuse_time($db,$id).'</td></tr>';            
 
 

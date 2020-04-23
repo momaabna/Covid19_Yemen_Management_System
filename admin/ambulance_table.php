@@ -10,6 +10,9 @@
         <th scope="col">A. Phone</th>
         <th scope="col">Bring By</th>
         <th scope="col">Location</th>
+        <th scope="col">Event</th>
+
+
     </tr>
   </thead>
   <tbody>
@@ -36,7 +39,10 @@ $online_thresh =1;
 $q =mysqli_real_escape_string($db,$_GET['q']);
  $state_ =mysqli_real_escape_string($db,$_GET['state']);
  $loc =mysqli_real_escape_string($db,$_GET['loc']);
+  $user =mysqli_real_escape_string($db,$_GET['user']);
+
 mysqli_query($db,"set names utf8");
+if($user==''){
 if($state_==''){
   $q = "SELECT * FROM `cases` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state = -1) order by id ";
 }elseif($loc==''){
@@ -45,6 +51,23 @@ if($state_==''){
 }else{
   $q = "SELECT * FROM `cases` WHERE ((name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state_ = '$state_' AND locality = '$loc') ) AND (state = -1) order by id ";
 }
+
+
+
+}else{
+if($state_==''){
+  $q = "SELECT * FROM `cases` WHERE (name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state = -1) AND (bring_by = $user) order by id ";
+}elseif($loc==''){
+  $q = "SELECT * FROM `cases` WHERE ((name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state_ = '$state_' ) ) AND (state = -1) AND (bring_by = $user) order by id";
+
+}else{
+  $q = "SELECT * FROM `cases` WHERE ((name LIKE '%$q%' OR info LIKE '%$q%' OR phone LIKE '%$q%' OR phone2 LIKE '%$q%' OR adress LIKE '%$q%') AND (state_ = '$state_' AND locality = '$loc') ) AND (state = -1) AND (bring_by = $user) order by id ";
+}
+
+}
+
+
+
 
 $result =mysqli_query($db,$q);
 while($row = mysqli_fetch_assoc($result)) {
@@ -80,7 +103,7 @@ $i=0;$h='';
 $q = "SELECT * FROM `users` WHERE permission=3 ";
 $result1 =mysqli_query($db,$q);
 
-
+if($user==''){
 while($row1 = mysqli_fetch_assoc($result1)){
   $i=$row1['id'];
     $h.="<a class='dropdown-item' href='./set_case_val.php?bring_by=".$i."&id=".$id."'>Assign to : ".getmanager_name($db,$i)."</a>";
@@ -92,6 +115,10 @@ $h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdo
   <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
     ".$h."
   </div>";
+}else{
+  $h1 = '<a href=set_case_val.php?state=0&id='.$id.'><img src="../images/ok20.png" /> </a>';
+};
+
 
 
      echo "
@@ -104,7 +131,7 @@ $h1 ="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdo
     <td>$phone2</td>
     <td>$bring_by</td>
     
-    <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='http://maps.google.com/maps?daddr=$lat,$lon'><img src='../images/on.png' width='20px' height='20px' /> </a> $h1 </td>
+    <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='http://maps.google.com/maps?daddr=$lat,$lon'><img src='../images/on.png' width='20px' height='20px' /> </a>  </td><td>$h1</td>
     </tr>";
     
     

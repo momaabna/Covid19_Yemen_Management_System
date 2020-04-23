@@ -66,7 +66,22 @@ while($row = mysqli_fetch_assoc($result)) {
           }elseif($state==3){
             $icon='dead.png';
           };
-          
+         $h1="<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+    
+  </button>
+  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    <a class='dropdown-item' href='./set_case_val.php?state=-1&id=".$id."'>Bringing Unit  </a>  
+     <a class='dropdown-item' href='./set_case_val.php?state=0&id=".$id."'>Under Test </a> 
+      <a class='dropdown-item' href='./set_case_val.php?state=1&id=".$id."'>Confirmed </a> 
+       <a class='dropdown-item' href='./set_case_val.php?state=2&id=".$id."'>Healed </a> 
+        <a class='dropdown-item' href='./set_case_val.php?state=3&id=".$id."'>Dead </a> 
+
+
+
+
+  </div>";
+
+
      echo "
     <tr>
       <th>$id</th>
@@ -77,7 +92,7 @@ while($row = mysqli_fetch_assoc($result)) {
     <td>$phone</td>
     <td>$phone2</td>
     <td>$type</td>
-    <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='del.php?table=cases&id=$id'><img src='../images/delete.png' width='20px' height='20px' /> </a></td>
+    <td><a href='#' onclick= \" map.setView(new ol.View({ center: ol.proj.fromLonLat([$lon,$lat], 'EPSG:3857'), zoom: 15 })); \" > <img src='../images/$icon' width='20px' height='20px' /></a> <a href='del.php?table=cases&id=$id'><img src='../images/delete.png' width='20px' height='20px' /> </a> $h1 </td>
     </tr>";
     
     

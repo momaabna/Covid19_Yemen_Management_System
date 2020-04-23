@@ -164,7 +164,7 @@ var container = document.getElementById('popup');
           overlays: [overlay],
         target: 'map',
         view: new ol.View({
-          center: ol.proj.fromLonLat(<?php echo "[ 32.547948, 15.609359]"; ?>, 'EPSG:3857'),
+          center: ol.proj.fromLonLat(<?php echo "[ 44.38571655468752, 15.450580710995894]"; ?>, 'EPSG:3857'),
           zoom: <?php echo 10; ?>
         }),
           controls: ol.control.defaults().extend([

@@ -1,6 +1,6 @@
 <?php
 include('./config.php');
-include('./session.php');
+//include('./session.php');
 include('./header.php');
 
 ?>
@@ -57,12 +57,12 @@ font-size:10pt;
 
 
  <div class="row" style="background-color:#535152;color:#fbb92f">
-    <div class="col-sm-4">
+    <div class="col-sm-4" style="padding: 20;">
  
-        <div class="list-group" id="table" style="overflow-x:auto;height:500px;border-style: solid;border-width: 2px;border-color:rgb(251,185,47);">
-           <a href="#" class="list-group-item list-group-item-action active">
+        <div class="list-group" id="table" style="overflow-x:auto;height:450px;border-style: solid;border-width: 2px;border-color:rgb(251,185,47);">
+           <a href="#" class="list-group-item list-group-item-action active" style="border-color:rgb(251,185,47);background-color:#535152;color:#fbb92f">
    
-Click on Case to Get Information
+Waiting WorldWide Information
 
   </a>
   
@@ -70,9 +70,9 @@ Click on Case to Get Information
         
         
     </div>
-    <div class="col-sm-8" >
-      <div id="map" class="map" width="100%" height="450px" style="border-style: solid;border-width: 2px;border-color:
-rgb(251,185,47);height:500px"></div>
+    <div class="col-sm-8" style="padding: 20;" >
+      <div id="map" class="map" width="100%"  style="border-style: solid;height:450px;border-width: 2px;border-color:
+rgb(251,185,47);padding: 10;"></div>
         <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
@@ -129,17 +129,17 @@ rgb(251,185,47);height:500px"></div>
         }
       });
      var v = new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases.php',
-          format: new ol.format.GeoJSON()
-        });
-     
+      url: '<?php echo $sitelink; ?>gis/cases.php', 
+      format: new ol.format.GeoJSON()
+    });
 
 
-     var vector = new ol.layer.Heatmap({
-        source: v,
-        blur: parseInt(50, 10),
-        radius: parseInt(50, 10)
-      });
+
+    var vector = new ol.layer.Heatmap({
+      source: v,
+      blur: parseInt(5, 10),
+      radius: parseInt(5, 10)
+    });
 
 	  var vectorLayer2 = new ol.layer.Vector({
         source: new ol.source.Vector({
@@ -172,7 +172,7 @@ rgb(251,185,47);height:500px"></div>
           new ol.layer.Tile({
             source: new ol.source.OSM()
           }),
-          vector,vectorLayer,vectorLayer2
+          vector,vectorLayer2
           ],
           overlays: [overlay],
         target: 'map',
@@ -223,7 +223,7 @@ rgb(251,185,47);height:500px"></div>
 				
 			}else if(layer.H.name=='track'){
         content.innerHTML = '<center><h6>Your Location</h6></center>';
-        overlay.setPosition(coordinate);
+        //overlay.setPosition(coordinate);
 
 
     }else{
@@ -241,7 +241,7 @@ rgb(251,185,47);height:500px"></div>
 
         content.innerHTML = '<center><h6>'+
 		' Case Information :</h6><p> '+feature.get('info')+'</p><h6><p>Case Type </p></h6><p> '+ feature.get('type')+'</p>'+ '</center>';
-				overlay.setPosition(coordinate);
+				//overlay.setPosition(coordinate);
         }
         
      });
@@ -250,10 +250,10 @@ rgb(251,185,47);height:500px"></div>
 	  var myVar = setInterval(myTimer, 5000);
 
 function myTimer() {
-    vectorLayer.setSource(new ol.source.Vector({
-          url: '<?php echo $sitelink ; ?>gis/cases.php',
-          format: new ol.format.GeoJSON()
-        }));
+   v = new ol.source.Vector({
+      url: '<?php echo $sitelink; ?>gis/cases.php', 
+      format: new ol.format.GeoJSON()
+    });
 		vectorLayer2.setSource(new ol.source.Vector({
           url: '<?php echo $sitelink ; ?>gis/hc.php',
           format: new ol.format.GeoJSON()
@@ -262,8 +262,8 @@ function myTimer() {
     
 } 
 	   map.on('moveend', function(e) {
-      vector.setRadius(2*map.getView().getZoom());
-    vector.setBlur(2*map.getView().getZoom());
+      vector.setRadius(1*map.getView().getZoom());
+    vector.setBlur(1*map.getView().getZoom());
     });
 
 
@@ -276,7 +276,7 @@ xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     var myObj = JSON.parse(this.responseText);
     var html_data='<ul class="list-group">'+
-    '<li class="list-group-item d-flex justify-content-between align-items-center list-group-item-primary" style="font-size:20">'+'Country'+
+    '<li class="list-group-item d-flex justify-content-between align-items-center list-group-item-primary" style="border-color:rgb(251,185,47);background-color:#535152;color:#fbb92f;font-size:20">'+'Country'+
        '<span class="badge badge-light badge-pill right">'+
        '<span class="badge badge-primary badge-pill right">'+'Total Cases'+'</span>'+
        '<span class="badge badge-success badge-pill right">&#8593; '+'New Cases'+'</span>'+

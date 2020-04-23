@@ -437,7 +437,7 @@ if (isset($_GET['user'])) {
                 
                 ?>
 <div class="col-md-12" >
-  <button type="submit" class="btn btn-primary col-md-12">Save Case</button>
+  <button type="submit" class="btn btn-primary col-md-12" style="background-color:#535152;border-color:#fbb92f;color:#fbb92f">Save Quarantine</button>
                 </div>
 </form>
             

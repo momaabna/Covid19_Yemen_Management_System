@@ -67,8 +67,8 @@ include('./header.php');
   <div class="col-sm-4">
 
     <div class="list-group" id="table" style="overflow-x:auto;height:500px;border-style: solid;border-width: 2px;border-color:#fbb92f;">
-      <a href="#" class="list-group-item list-group-item-action active">
-        Click on Notification to See it's Information
+      <a href="#" class="list-group-item list-group-item-action active" style="border-color:rgb(251,185,47);background-color:#535152;color:#fbb92f;">
+        Click on Element to See Information
       </a>
 
     </div>
@@ -224,7 +224,7 @@ include('./header.php');
 
           //}
 
-          var table = '<a href="#" class="list-group-item list-group-item-action active"> Qurantine Information</a>';
+          var table = '<a href="#" class="list-group-item list-group-item-action active" style="border-color:rgb(251,185,47);background-color:#535152;color:#fbb92f;"> Qurantine Information</a>';
           //var el=feature.get('schedul').split(',');
           //for(var i=0;i<el.length;i++){
 
@@ -245,7 +245,7 @@ include('./header.php');
         } else {
 
 
-          var table = '<a href="#" class="list-group-item list-group-item-action active"> Case Information</a>';
+          var table = '<a href="#" class="list-group-item list-group-item-action active" style="border-color:rgb(251,185,47);background-color:#535152;color:#fbb92f;"> Case Information</a>';
           //var el=feature.get('schedul').split(',');
           //for(var i=0;i<el.length;i++){
           table += '<a href="#" class="list-group-item list-group-item-action"> Name : ' + feature.get('name') + '</a>';
@@ -277,8 +277,8 @@ include('./header.php');
 
     }
     map.on('moveend', function(e) {
-      vector.setRadius(2 * map.getView().getZoom());
-      vector.setBlur(2 * map.getView().getZoom());
+      vector.setRadius(1 * map.getView().getZoom());
+      vector.setBlur(1 * map.getView().getZoom());
     });
   </script>
 

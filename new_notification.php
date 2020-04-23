@@ -1,6 +1,6 @@
 <?php
 include('./config.php');
-include('./session.php');
+//include('./session.php');
 include('./header.php');
 //include('./includes/setting.php');
 
@@ -117,17 +117,17 @@ mysqli_query($db,"SET NAMES 'utf8'");
 
 
   <div class="row" style="background-color:#535152;color:#fbb92f"> 
-    <div class="col-sm-6" style="border-style: solid;border-width: 2px;border-color:#fbb92f;">
+    <div class="col-sm-6" style="border-style: solid;;border-width: 2px;border-color:#fbb92f;">
  <?php 
                 
                 if(isset($success)){
                     if($success){
                        echo "<div class='alert alert-success' role='alert'>
-                            Task Sent Successfully .
+                            Report Sent Successfully .
                                 </div>";
                     }else{
                         echo "<div class='alert alert-danger' role='alert'>
-                            Failed To Send Task .
+                            Failed To Send Report .
                                 </div>";
                     }
                 }
@@ -431,8 +431,8 @@ Exposure to confirmed COVID-19 cases in the last two week</label>
         
     
 
-    <div class="col-sm-6" >
-      <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 2px;border-color:#fbb92f;height:500px;"></div>
+    <div class="col-sm-6" style="padding: 20;" >
+      <div id="map" class="map" width="100%" height="500px" style="border-style: solid;border-width: 2px;border-color:#fbb92f;height:450px;padding: 10;"></div>
         <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
